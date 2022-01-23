@@ -1,0 +1,58 @@
+/************************* Navbar ********************/
+.navbar ul div li{
+    text-decoration: none;
+    list-style: none;
+    padding: 10px 13px;
+}
+
+.navbar ul div{
+    display: flex;
+}
+
+
+
+.navbar ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar{
+    /* border: 2px solid red; */
+    background-color: rgb(248, 244, 0);
+    /* border-radius: 10px; */
+    /* margin: 0px 0px; */
+    padding: 1px 10px;
+    box-shadow: 0px 0px 20px black;
+    /* width: 100%; */
+
+}
+
+.navbar-items{
+    color: white;
+    background-color: red;
+    padding: 5px 10px;
+    margin: 0px 10px;
+    border-radius: 10px;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.navbar-link{
+    text-decoration: none;
+}
+
+.navbar-items:hover{
+    cursor: pointer;
+    background-color: black;
+}
+
+.navbar-items:focus{
+    background-color: black;
+    color: white;
+}
+
+.navbar-items:active{
+    background-color: black;
+    color: white;
+}
