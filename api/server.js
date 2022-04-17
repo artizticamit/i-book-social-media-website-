@@ -47,6 +47,8 @@ app.use(cors({
 //     res.send("Amit Kumar");
 // })
 
+// D:\Ubuntu OS(installed)\Ubuntu 20.04\Ubuntu 20.04.vdi
+// D:\VirtualBox\VBoxGuestAdditions.iso
 
 // app.post("/login", (req, res)=>{
 //     console.log(req.body);
