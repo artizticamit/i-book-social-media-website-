@@ -59,6 +59,12 @@ app.use(cors({
 //     res.end("<h1>Error</h1>")
 // })
 
+app.post("/login", (req, res)=>{
+    const username = req.body.email;
+    const password = req.body.password;
+    
+})
+
 
 const PORT = 8000;
 
