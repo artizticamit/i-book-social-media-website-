@@ -3,6 +3,8 @@ import {Search, Person, Message, Notifications} from "@mui/icons-material"
 // import MessageIcon from '@mui/icons-material/Message';
 import "./topbar.css"
 
+
+
 export default function Topbar() {
   return (
     <>
@@ -15,18 +17,21 @@ export default function Topbar() {
                     
                     <Search />
                 </div>
-                <input type="text" className='search-box' />
+                <input type="text" placeholder='Search something.....' className='search-box' />
+                <span className="search-border"></span>
             </div>
             <div className="menu-container">
                 <div className="profile menu-items">
                     <Person />
+                    
                 </div>
                 <div className="messages menu-items">
                     <Message />
+                    <span className="flag"></span>
                 </div>
                 <div className="notifications menu-items">
                     <Notifications />
-
+                    <span className="flag"></span>
                 </div>
             </div>
             <div className="profile-pic">
