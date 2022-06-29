@@ -1,8 +1,9 @@
 .feed-container
 {
     flex: 5.5;
-    height: 100px;
-    width: 200px;
-    border: 2px solid black;
-    overflow-y: scroll;
+}
+
+.feed-wrapper
+{
+    padding:20px;
 }

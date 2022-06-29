@@ -1,10 +1,24 @@
 .sidebar-container{
     flex: 3;
     /* height: (100vh-40px); */
-    height: 94vh;
+    height: 95vh;
     /* background-color: yellow; */
-    border: 2px solid black;
+    /* border: 2px solid black; */
     overflow-y: scroll;
+}
+
+.sidebar-container::-webkit-scrollbar
+{
+    width: 5px;
+    transition: all 0.15s;
+}
+.sidebar-container::-webkit-scrollbar-track
+{
+    background-color: antiquewhite;
+}
+.sidebar-container::-webkit-scrollbar-thumb
+{
+    background-color: rgb(151, 151, 151);
 }
 
 .sidebar-list
@@ -52,6 +66,7 @@
 .sidebar-hr
 {
     margin: 10px 0;
+    margin-right: 10px;
 }
 
 .sidebar-friend-list
