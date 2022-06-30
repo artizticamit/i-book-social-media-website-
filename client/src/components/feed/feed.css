@@ -1,6 +1,8 @@
 .feed-container
 {
     flex: 5.5;
+    /* height: 97vh;
+    overflow-y: scroll; */
 }
 
 .feed-wrapper
