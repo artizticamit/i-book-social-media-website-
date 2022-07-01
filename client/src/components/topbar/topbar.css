@@ -2,7 +2,7 @@
 {
     display: flex;
     align-items: center;
-    height: 40px;
+    height: 45px;
     position: sticky;
     background-color: orangered;
 }
@@ -92,24 +92,32 @@
 {
     right: 7px;
 }
-.profile-pic
-{
-    border: 2px solid black;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.image-container
+.topbar-right
 {
     display: flex;
     align-items: center;
+    /* border: 2px solid black; */
+    /* height: 30px; */
+    /* width: 30px; */
+    /* border-radius: 50%; */
+    
+}
+.dark-white-toggle
+{
+    margin-right: 20px;
+    cursor: pointer;
+}
+.image-container
+{
+    /* margin-right: 20; */
+    display: flex;
+    align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 .image{
-    height: 30px;
-    width: 30px;
+    height: 35px;
+    width: 35px;
     border-radius: 50%;
     object-fit: cover;
 }

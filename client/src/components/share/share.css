@@ -4,9 +4,9 @@
     height: 170px;
     border-radius: 10px;
     /* background-color: blue; */
-    -webkit-box-shadow: 0px 0px 29px 0px rgba(0,0,0,0.3);
-    -moz-box-shadow: 0px 0px 29px 0px rgba(0,0,0,0.3);
-    box-shadow: 0px 0px 29px 0px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0px 0px 29px 0px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 0px 29px 0px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 29px 0px rgba(0,0,0,0.1);
 }
 
 .share-wrapper
@@ -70,4 +70,29 @@
     background-color: black;
     border-radius: 50%;
     border: none;
+}
+
+.share-bottom
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.share-btn
+{
+    background-color: green;
+    color: #fff;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: all 0.15s;
+}
+
+.share-btn:hover
+{
+    text-shadow: 2px 5px 5px rgba(255, 255, 255, 1);
+    
 }

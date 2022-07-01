@@ -5,6 +5,7 @@
     /* background-color: yellow; */
     /* border: 2px solid black; */
     overflow-y: scroll;
+    scrollbar-width: thin;
 }
 
 .sidebar-container::-webkit-scrollbar

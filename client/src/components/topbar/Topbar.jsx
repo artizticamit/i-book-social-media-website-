@@ -1,16 +1,20 @@
 import React from 'react'
-import {Search, Person, Message, Notifications} from "@mui/icons-material"
+import {Search, Person, Message, Notifications, ToggleOffOutlined} from "@mui/icons-material"
 // import MessageIcon from '@mui/icons-material/Message';
 import "./topbar.css"
 
 
 
 export default function Topbar() {
+    // const toggle = document.querySelector(".toggle-icon");
+    // toggle.addEventListener("click", (e)=>{
+    //     e.target.style.backgroundColor = "white";
+    // })
   return (
     <>
         <div className="container">
             <div className="icon-container">
-                <p class="icon">I-Book</p>
+                <p className="icon">I-Book</p>
             </div>
             <div className="searchbar-container">
                 <div className="search-icon">
@@ -34,7 +38,10 @@ export default function Topbar() {
                     <span className="flag"></span>
                 </div>
             </div>
-            <div className="profile-pic">
+            <div className="topbar-right">
+                 <div className="dark-white-toggle">
+                    <ToggleOffOutlined className='toggle-icon' />
+                </div>
                 <div className="image-container">
                     <img className='image' src="./assets/person/1.jpeg" alt="" />
                 </div>

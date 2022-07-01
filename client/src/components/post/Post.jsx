@@ -17,7 +17,7 @@ export default function () {
             </div>
           </div>
           <div className="post-center">
-            <span className="post-center-description">Hello there!</span>
+            <span className="post-center-text">Hello there!</span>
             <img src="./assets/post/1.jpeg" alt="" className="post-center-img" />
           </div>
           <div className="post-bottom">
@@ -25,11 +25,11 @@ export default function () {
               <div className="post-likes">
                 <img  src="./assets/like.png" alt="" className="post-like-icon" />
                 <img  src="./assets/heart.png" alt="" className="post-like-icon" />
-                <span className="post-likes-text">32 likes</span>
+                <span className="post-likes-counter">32 likes</span>
               </div>
             </div>
             <div className="post-bottom-right">
-
+              9 comments
             </div>
           </div>
         </div>
