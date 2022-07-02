@@ -1,3 +1,7 @@
+body{
+    /* overflow: auto; */
+}
+
 /************************* Navbar ********************/
 .navbar ul div li{
     text-decoration: none;

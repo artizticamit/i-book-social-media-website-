@@ -8,12 +8,16 @@ function login() {
     const [password, setPassword] = useState('');
 
     const handleLoginButton = (e)=>{
-        // e.preventDefault();
+        e.preventDefault();
         if(email && password)
         {
 
-            Axios.post('http://localhost:8000/login', {email: email, password:password}, ).then((response)=>{
+            Axios.post('http://localhost:8000/api/auth/login', {email: email, password:password}, ).then((response)=>{
                 console.log("Response = ", response);
+                if(response.status==200)
+                {
+                    console.log("hello");
+                }
             }).catch(err=>{
                 console.log("error = ",err)
             })

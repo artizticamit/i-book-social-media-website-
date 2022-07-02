@@ -1,0 +1,26 @@
+.feed-container
+{
+    flex: 5.5;
+    height: 97vh;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.feed-container::-webkit-scrollbar
+{
+    width: 0px;
+    transition: all 0.15s;
+}
+.feed-container::-webkit-scrollbar-track
+{
+    background-color: antiquewhite;
+}
+.feed-container::-webkit-scrollbar-thumb
+{
+    background-color: rgb(151, 151, 151);
+}
+
+.feed-wrapper
+{
+    padding:20px;
+}
