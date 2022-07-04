@@ -6,6 +6,9 @@
     /* border: 2px solid black; */
     overflow-y: scroll;
     scrollbar-width: thin;
+    position: sticky;
+    top: 49px;
+    z-index: 1;
 }
 
 .sidebar-container::-webkit-scrollbar

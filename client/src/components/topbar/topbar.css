@@ -5,6 +5,8 @@
     height: 45px;
     position: sticky;
     background-color: orangered;
+    top:0px;
+    z-index: 2;
 }
 
 .icon
