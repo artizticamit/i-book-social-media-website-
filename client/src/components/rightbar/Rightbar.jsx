@@ -15,9 +15,9 @@ export default function Rightbar() {
         </div>
         <div className="rightbar-bottom">
           <div className="online-friends-heading">Online Friends</div>
-          <OnlineUsers props={Users}/>
-          <OnlineUsers props={Users}/>
-          <OnlineUsers props={Users}/>
+          {Users.map((u)=>(
+            <OnlineUsers key={u.id} user={u} />
+          ))}
         </div>
       </div>
     </div>

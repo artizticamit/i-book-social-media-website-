@@ -13,7 +13,7 @@
 
 .sidebar-container::-webkit-scrollbar
 {
-    width: 5px;
+    width: 4px;
     transition: all 0.15s;
 }
 .sidebar-container::-webkit-scrollbar-track
@@ -79,18 +79,4 @@
     margin: 0;
     list-style: none;
    
-}
-.sidebar-friend-list-item
-{
-    display: flex;
-    align-items: center;
-    margin-bottom: 25px;
-}
-.sidebar-friend-img
-{
-    height: 30px;
-    width: 30px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-right: 10px;
 }
