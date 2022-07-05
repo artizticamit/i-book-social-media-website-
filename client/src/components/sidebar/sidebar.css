@@ -13,7 +13,7 @@
 
 .sidebar-container::-webkit-scrollbar
 {
-    width: 5px;
+    width: 4px;
     transition: all 0.15s;
 }
 .sidebar-container::-webkit-scrollbar-track
