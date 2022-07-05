@@ -80,17 +80,3 @@
     list-style: none;
    
 }
-.sidebar-friend-list-item
-{
-    display: flex;
-    align-items: center;
-    margin-bottom: 25px;
-}
-.sidebar-friend-img
-{
-    height: 30px;
-    width: 30px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-right: 10px;
-}
