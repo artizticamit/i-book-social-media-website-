@@ -33,6 +33,11 @@ export const Users = [
         id:7,
         profilePicture: "assets/person/7.jpeg",
         username:"Tywin Lannister"
+    },
+    {
+        id:8,
+        profilePicture: "assets/person/8.jpeg",
+        username:"Breine Tarth",
     }
 ]
 
