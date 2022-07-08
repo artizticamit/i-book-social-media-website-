@@ -1,0 +1,23 @@
+.profile-container
+{
+    display: flex;
+}
+
+.profile-right
+{
+    flex: 9;
+}
+.profile-right-bottom
+{
+    display: flex;
+}
+
+.profile-feed
+{
+    flex:7;
+}
+
+.profile-rightbar
+{
+    flex: 3;
+}
