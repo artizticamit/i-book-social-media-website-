@@ -7,17 +7,25 @@ import Rightbar from "../../components/rightbar/Rightbar.jsx"
 export default function Profile() {
   return (
     <>
-        <Topbar />
-        <div className="profile-container">
-          <Sidebar />
-          <div className="profile-right">
-            <div className="profile-right-top">Top</div>
-            <div className="profile-right-bottom">
-              <Feed className="profile-feed" />
-              <Rightbar className="profile-rightbar" />
+      <Topbar />
+      <div className="profile-container">
+        <Sidebar />
+        <div className="profile-right">
+          <div className="profile-right-top">
+            <div className="profile-cover">
+              <img src="./assets/post/9.jpeg" alt="" className="profile-cover-img" />
+              <img src="./assets/person/10.jpeg" alt="" className="profile-user-img" />
             </div>
           </div>
+          <div className="profile-info">
+            <h4 className="profile-info-name">Cersei Baratheon</h4>
+          </div>
+          <div className="profile-right-bottom">
+            <Feed />
+            <Rightbar />
+          </div>
         </div>
-      </>
+      </div>
+    </>
   )
 }

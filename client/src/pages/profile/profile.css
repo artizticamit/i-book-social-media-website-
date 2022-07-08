@@ -12,12 +12,47 @@
     display: flex;
 }
 
-.profile-feed
+.profile-cover
 {
-    flex:7;
+    height: 320px;
+    position: relative;
 }
 
-.profile-rightbar
+.profile-cover-img
 {
-    flex: 3;
+    height: 250px;
+    width:100%;
+    object-fit: cover;
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    filter: blur(1px);
+}
+
+.profile-user-img
+{
+    height:150px;
+    width:150px;
+    border-radius: 50%;
+    object-fit: cover;
+    position: absolute;
+    top: 10%;
+    left: 42%;
+    margin: auto;
+    /* text-align: center; */
+    filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.5));
+}
+
+
+.profile-info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-info-name
+{
+    position: absolute;
+    top: 31%;
+    left: 57%;
+    margin: auto;
+    color: #fff;
 }
