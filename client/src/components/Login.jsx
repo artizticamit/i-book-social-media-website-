@@ -38,7 +38,7 @@ function login() {
                     <button onClick={handleLoginButton}>Login</button>
                 </form>
                 <div className="signup">
-                    <p>Don't have an accoount? <a href='#'>Sign Up</a></p>
+                    <p>Don't have an accoount? <a href='/signup'>Sign Up</a></p>
                 </div>
             </div>
             

@@ -13,9 +13,11 @@ export default function Topbar() {
   return (
     <>
         <div className="container">
-            <div className="icon-container">
-                <p className="icon">I-Book</p>
-            </div>
+            <a href='/' className='home-link'>
+                <div className="icon-container">
+                    <p className="icon">I-Book</p>
+                </div>
+            </a>
             <div className="searchbar-container">
                 <div className="search-icon">
                     
@@ -43,7 +45,7 @@ export default function Topbar() {
                     <ToggleOffOutlined className='toggle-icon' />
                 </div>
                 <div className="image-container">
-                    <img className='image' src="./assets/person/1.jpeg" alt="" />
+                    <a href='/profile'> <img className='image' src="./assets/person/1.jpeg" alt="" /> </a>
                 </div>
             </div>
         </div>

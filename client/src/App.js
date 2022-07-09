@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Link, Routes, Switch } from "react-rout
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Navbar from "./components/Navbar";
-import Profile from "./components/Profile";
+import Profile from "./pages/profile/Profile";
 import Home from "./pages/home/Home";
 
 
@@ -13,6 +13,8 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Home />}/>
           <Route exact path='/signup' element={<Signup />}/>
+          <Route exact path='/login' element={<Login />}/>
+          <Route exact path='/profile' element={<Profile />}/>
         </Routes>
       </Router>
     </>
