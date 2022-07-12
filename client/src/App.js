@@ -1,9 +1,10 @@
 import { BrowserRouter as Router, Route, Link, Routes, Switch } from "react-router-dom";
-import Login from "./components/Login";
-import Signup from "./components/Signup";
+
 import Navbar from "./components/Navbar";
 import Profile from "./pages/profile/Profile";
 import Home from "./pages/home/Home";
+import Login from "./pages/login/Login";
+import Signup from "./pages/signup/Signup";
 
 
 function App() {
