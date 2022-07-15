@@ -15,53 +15,10 @@ function App() {
           <Route exact path='/' element={<Home />}/>
           <Route exact path='/signup' element={<Signup />}/>
           <Route exact path='/login' element={<Login />}/>
-          <Route exact path='/profile' element={<Profile />}/>
+          <Route exact path='/profile/:username' element={<Profile />}/>
         </Routes>
       </Router>
     </>
-    // <div className="App">
-      
-    //   <Router>
-    //     <Routes>
-    //       <Route exact path='/' element={<Home />} />
-    //       <Route exact path='/login' element={
-    //         <>
-    //           <Navbar />
-    //           <Login />
-    //         </>
-    //       } >
-    //       </Route>
-
-    //       <Route exact path='/signup' element={
-    //         <>
-    //           <Navbar />
-    //           <Signup />
-    //         </>
-    //       }>
-    //       </Route>
-
-    //       <Route exact path='/profile:username' element={
-    //         <>
-    //           <Navbar />
-    //           <Profile />
-    //         </>
-    //       } />
-    //     </Routes>
-    //   </Router>
-
-    //   {/* <Router>
-    //     <Routes>
-    //       <Route path="/login" element={
-    //         <>
-    //           <Navbar />
-    //           <Login />
-    //         </>
-    //       }>
-
-    //       </Route>
-    //     </Routes>
-    //   </Router> */}
-    // </div>
   );
 }
 
