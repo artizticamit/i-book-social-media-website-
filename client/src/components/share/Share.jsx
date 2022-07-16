@@ -1,5 +1,8 @@
 import "./share.css"
 import {PermMedia, Label, EmojiEmotions, Room} from "@mui/icons-material"
+import React from 'react'
+import ReactDOM from 'react-dom'
+
 
 export default function Share() {
   return (

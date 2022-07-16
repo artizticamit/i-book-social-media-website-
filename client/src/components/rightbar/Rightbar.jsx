@@ -1,6 +1,9 @@
 import "./rightbar.css"
 import { Users } from "../../dummyData"
 import OnlineUsers from "../onlineUsers/OnlineUsers"
+import React from 'react'
+import ReactDOM from 'react-dom'
+
 
 export default function Rightbar({ profile }) {
 
