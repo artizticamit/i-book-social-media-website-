@@ -101,3 +101,56 @@
     top: 11px;
     left: -26px;
 }
+
+.rightbar-title
+{
+    font-size: 19px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.rightbar-info
+{
+    margin-bottom: 15px;
+}
+
+.rightbar-info-item
+{
+    margin-bottom: 10px;
+}
+
+.rightbar-info-key
+{
+    font-weight: 500;
+    margin-right: 15px;
+    color: #555;
+}
+.rightbar-info-key
+{
+    font-weight: 300;
+}
+
+.rightbar-followings
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.rightbar-following{
+    display: flex;
+    flex-direction: column;
+    /* margin: 5px; */
+    margin-bottom: 10px;
+    margin-right: 15px;
+    cursor: pointer;
+    align-items: center;
+}
+
+.rightbar-following-img
+{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}

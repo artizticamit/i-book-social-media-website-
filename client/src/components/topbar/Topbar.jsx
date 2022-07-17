@@ -1,7 +1,10 @@
-import React from 'react'
+
 import {Search, Person, Message, Notifications, ToggleOffOutlined} from "@mui/icons-material"
 // import MessageIcon from '@mui/icons-material/Message';
 import "./topbar.css"
+import {Link} from "react-router-dom";
+import React from 'react'
+import ReactDOM from 'react-dom'
 
 
 
@@ -13,11 +16,12 @@ export default function Topbar() {
   return (
     <>
         <div className="container">
-            <a href='/' className='home-link'>
+            <Link to="/" style={{textDecoration:"none"}}>
                 <div className="icon-container">
-                    <p className="icon">I-Book</p>
+                    <span className="icon">I-Book</span>
                 </div>
-            </a>
+            </Link>
+            
             <div className="searchbar-container">
                 <div className="search-icon">
                     

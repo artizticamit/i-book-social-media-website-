@@ -2,6 +2,10 @@ import "./post.css"
 import {MoreVert} from "@mui/icons-material"
 import {Users} from "../../dummyData"
 import { useState } from "react";
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+
 
 export default function ({post}) {
   // console.log(post)
@@ -11,6 +15,8 @@ export default function ({post}) {
 
   const [like, setLike] = useState(post.like);
   const [isLiked, setIsLiked] = useState(false);
+
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   const likeHandler = ()=>{
     setLike(isLiked ? like-1 : like+1);
@@ -22,7 +28,7 @@ export default function ({post}) {
         <div className="post-wrapper">
           <div className="post-top">
             <div className="post-top-left">
-              <img src={Users.filter((u)=> u.id === post.userId ).map((user)=>user.profilePicture)} alt="" className="post-profile-pic" />
+              <img src={PF+Users.filter((u)=> u.id === post.userId ).map((user)=>user.profilePicture)} alt="" className="post-profile-pic" />
               <span className="post-username">{Users.filter((u)=> u.id === post.userId ).map((user)=>user.username)}</span>
               <span className="post-timelapse" >{post.date}</span>
 
@@ -32,8 +38,8 @@ export default function ({post}) {
             </div>
           </div>
           <div className="post-center">
-            <span className="post-center-text">{post?.desc}</span>  
-            <img src={post.photo} alt="" className="post-center-img" />
+            <span className="post-center-text">{post.desc}</span>
+            <img src={PF+post.photo} alt="" className="post-center-img" />
           </div>
           <div className="post-bottom">
             <div className="post-bottom-left">

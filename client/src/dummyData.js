@@ -1,42 +1,42 @@
 export const Users = [
     {
         id:1,
-        profilePicture: "assets/person/1.jpeg",
+        profilePicture: "person/1.jpeg",
         username:"sansa stark"
     },
     {
         id:2,
-        profilePicture: "assets/person/2.jpeg",
+        profilePicture: "person/2.jpeg",
         username:"Brandon Nicholin"
     },
     {
         id:3,
-        profilePicture: "assets/person/3.jpeg",
+        profilePicture: "person/3.jpeg",
         username:"Robert Baratheon"
     },
     {
         id:4,
-        profilePicture: "assets/person/4.jpeg",
+        profilePicture: "person/4.jpeg",
         username:"Jon Snow"
     },
     {
         id:5,
-        profilePicture: "assets/person/5.jpeg",
+        profilePicture: "person/5.jpeg",
         username:"Robb Stark"
     },
     {
         id:6,
-        profilePicture: "assets/person/6.jpeg",
+        profilePicture: "person/6.jpeg",
         username:"Stannis baratheon"
     },
     {
         id:7,
-        profilePicture: "assets/person/7.jpeg",
+        profilePicture: "person/7.jpeg",
         username:"Tywin Lannister"
     },
     {
         id:8,
-        profilePicture: "assets/person/8.jpeg",
+        profilePicture: "person/8.jpeg",
         username:"Breine Tarth",
     }
 ]
@@ -45,7 +45,7 @@ export const Posts = [
     {
         id:1,
         desc: "Lover for all, Hate for none",
-        photo: "assets/post/1.jpeg",
+        photo: "post/1.jpeg",
         date: "5 mins ago",
         userId:1,
         like:32,
@@ -54,7 +54,7 @@ export const Posts = [
     {
         id:2,
         desc: "Money can't buy happiness, it buys immense happiness.",
-        photo: "assets/post/2.jpeg",
+        photo: "post/2.jpeg",
         date: "15 mins ago",
         userId:2,
         like:2,
@@ -62,7 +62,7 @@ export const Posts = [
     },
     {
         id:3,
-        photo: "assets/post/3.jpeg",
+        photo: "post/3.jpeg",
         date: "1 min ago",
         userId:3,
         like:1,
@@ -71,7 +71,7 @@ export const Posts = [
     {
         id:4,
         desc: "Lannisters always pay their debts.",
-        photo: "assets/post/4.jpeg",
+        photo: "post/4.jpeg",
         date: "40 mins ago",
         userId:7,
         like:90,
@@ -80,7 +80,7 @@ export const Posts = [
     {
         id:5,
         desc: "Hi! nice to meet ya'll.",
-        photo: "assets/post/5.jpeg",
+        photo: "post/5.jpeg",
         date: "0 min ago",
         userId:5,
         like:2,
@@ -89,7 +89,7 @@ export const Posts = [
     {
         id:6,
         desc: "My nick name is siz-san.",
-        photo: "assets/post/6.jpeg",
+        photo: "post/6.jpeg",
         date: "0 min ago",
         userId:6,
         like:12,
@@ -98,7 +98,7 @@ export const Posts = [
     {
         id:7,
         desc: "hello there!",
-        photo: "assets/post/7.jpeg",
+        photo: "post/7.jpeg",
         date: "0 min ago",
         userId:4,
         like:90,
@@ -107,7 +107,7 @@ export const Posts = [
     {
         id:8,
         desc: "Hi! nice to meet ya'll.",
-        photo: "assets/post/8.jpeg",
+        photo: "post/8.jpeg",
         date: "0 min ago",
         userId:3,
         like:22,

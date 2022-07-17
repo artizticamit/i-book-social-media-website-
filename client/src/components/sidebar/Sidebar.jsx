@@ -2,6 +2,9 @@ import "./sidebar.css"
 import {Home, Explore, Star, LocalFireDepartment, Group} from "@mui/icons-material"
 import {Users} from "../../dummyData"
 import CloseFriend from "../closeFriend/CloseFriend"
+import React from 'react'
+import ReactDOM from 'react-dom'
+
 
 export default function Sidebar() {
   return (
