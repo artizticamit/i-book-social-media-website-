@@ -13,7 +13,7 @@ export default function Home() {
         <Topbar />
         <div className="home-container">
           <Sidebar />
-          <Feed />
+          <Feed username={"kirito"}/>
           <Rightbar />
         </div>
       </>

@@ -1,3 +1,5 @@
+// eslint-disable-next-line no-undef no-unused-vars
+
 import { BrowserRouter as Router, Route, Link, Routes, Switch } from "react-router-dom";
 import React from 'react';
 
@@ -13,9 +15,9 @@ function App() {
       <Router>
         <Routes>
           <Route exact path='/' element={<Home />}/>
-          <Route exact path='/signup' element={<Signup />}/>
-          <Route exact path='/login' element={<Login />}/>
-          <Route exact path='/profile/:username' element={<Profile />}/>
+          <Route path='/signup' element={<Signup />}/>
+          <Route path='/login' element={<Login />}/>
+          <Route path='/profile/:username' element={<Profile />}/>
         </Routes>
       </Router>
     </>

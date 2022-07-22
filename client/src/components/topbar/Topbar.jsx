@@ -8,11 +8,13 @@ import ReactDOM from 'react-dom'
 
 
 
+
 export default function Topbar() {
     // const toggle = document.querySelector(".toggle-icon");
     // toggle.addEventListener("click", (e)=>{
     //     e.target.style.backgroundColor = "white";
     // })
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   return (
     <>
         <div className="container">
@@ -49,7 +51,7 @@ export default function Topbar() {
                     <ToggleOffOutlined className='toggle-icon' />
                 </div>
                 <div className="image-container">
-                    <a href='/profile'> <img className='image' src="./assets/person/1.jpeg" alt="" /> </a>
+                    <a href='/profile'> <img className='image' src={PF + "/person/1.jpeg"} alt="" /> </a>
                 </div>
             </div>
         </div>
