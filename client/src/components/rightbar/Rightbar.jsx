@@ -3,9 +3,12 @@ import { Users } from "../../dummyData"
 import OnlineUsers from "../onlineUsers/OnlineUsers"
 import React from 'react'
 import ReactDOM from 'react-dom'
+import FriendsList from "../friendsList/FriendsList"
+import Loading from "../loading/Loading"
 
 
 export default function Rightbar({ user }) {
+  // console.log
 
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
@@ -30,6 +33,7 @@ export default function Rightbar({ user }) {
   }
 
   const ProfileRightbar = () => {
+    console.log(user)
     return (
       <>
         <h4 className="rightbar-title">User information</h4>
@@ -49,48 +53,23 @@ export default function Rightbar({ user }) {
           <h4 className="rightbar-title">User friends</h4>
           <div className="rightbar-followings">
             <div className="rightbar-following">
-              <img src={PF + "person/1.jpeg"} alt="" className="rightbar-following-img" />
-              <span className="rightbar-following-name">jamie</span>
-            </div>
-            <div className="rightbar-following">
-              <img src={PF + "person/2.jpeg"} alt="" className="rightbar-following-img" />
-              <span className="rightbar-following-name">frey</span>
-            </div>
-            <div className="rightbar-following">
-              <img src={PF + "person/3.jpeg"} alt="" className="rightbar-following-img" />
-              <span className="rightbar-following-name">walda</span>
-            </div>
-            <div className="rightbar-following">
-              <img src={PF + "person/4.jpeg"} alt="" className="rightbar-following-img" />
-              <span className="rightbar-following-name">walda</span>
-            </div>
-            <div className="rightbar-following">
-              <img src={PF + "person/5.jpeg"} alt="" className="rightbar-following-img" />
-              <span className="rightbar-following-name">walda</span>
-            </div>
-            <div className="rightbar-following">
-              <img src={PF + "person/6.jpeg"} alt="" className="rightbar-following-img" />
-              <span className="rightbar-following-name">walda</span>
-            </div>
-            <div className="rightbar-following">
-              <img src={PF + "person/7.jpeg"} alt="" className="rightbar-following-img" />
-              <span className="rightbar-following-name">walda</span>
-            </div>
-            <div className="rightbar-following">
-              <img src={PF + "person/8.jpeg"} alt="" className="rightbar-following-img" />
-              <span className="rightbar-following-name">walda</span>
+              {user.followings !== undefined && user.followings.map((item)=>{
+                return <>
+                  <div>{item}</div>
+                </>
+              })}
             </div>
           </div>
         </div>
       </>
-    )
+      )
   }
 
-  return (
-    <div className="rightbar-container">
-      <div className="rightbar-wrapper">
-        {user ? <ProfileRightbar /> : <HomeRightbar />}
-      </div>
-    </div>
-  )
+        return (
+        <div className="rightbar-container">
+          <div className="rightbar-wrapper">
+            {user ? <ProfileRightbar /> : <HomeRightbar />}
+          </div>
+        </div>
+        )
 }

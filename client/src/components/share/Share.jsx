@@ -9,21 +9,22 @@ import axios from "axios";
 export default function Share({username}) {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const [userData, setUserData] = useState({});
-    // console.log("username = "+ username);
+    console.log("username = "+ username);
 
     useEffect(()=>{
         const fetchUserData = async () => {
             const res = await axios.get("http://localhost:8000/api/user?username="+username);
-            setUserData("res = "+res.data);
-            // console.log(res);
+            setUserData(res.data);
+            // console.log("res =",res);
         }
         fetchUserData();
-    }, [username])
+    }, [])
+    // console.log("user  = ", userData);
   return (
     <div className="share-container">
         <div className="share-wrapper">
             <div className="share-top">
-                <img className="share-profile-pic" src={PF + (userData.profilePicture!==undefined?userData.profilePicture: "person/noAvatar.png")} alt="" />
+                <img className="share-profile-pic" src={PF + (userData.profilePicture!==""?userData.profilePicture: "person/noAvatar.png")} alt="" />
                 <input type="text" className="share-input" placeholder="What's in your mind ?"/>
             </div>
             <hr className="share-hr"/>

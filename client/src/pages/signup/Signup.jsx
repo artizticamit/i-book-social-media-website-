@@ -12,6 +12,11 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useRef } from 'react';
+import {loginCall, registerCall} from '../../apiCalls';
+import {AuthContext} from '../../context/AuthContext';
+import {useContext, useEffect} from 'react';
+import axios from 'axios';
 
 function Copyright(props) {
   return (
@@ -29,14 +34,25 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
+
+  const email = useRef();
+  const password = useRef();
+  const username = useRef();
+  const {user, isFetching, error, dispatch} = useContext(AuthContext);
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    console.log(
+      `Email: ${data.get('email')}
+      Password: ${data.get('password')}
+      username: ${data.get('username')}`
+    );
+      // registerCall({ email: data.get('email'), password: data.get('password'), username: data.get('username') }, dispatch);
+      const userDetails = { email: data.get('email'), password: data.get('password'), username: data.get('username') };
+      registerCall(userDetails, dispatch);
   };
+
+  console.log(user);
 
   return (
     <ThemeProvider theme={theme}>
@@ -59,23 +75,36 @@ export default function SignIn() {
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
-              required
+              required={true}
               fullWidth
               id="email"
               label="Email Address"
               name="email"
               autoComplete="email"
               autoFocus
+              ref={email}
             />
             <TextField
               margin="normal"
-              required
+              required={true}
               fullWidth
+              minLength="6"
               name="password"
               label="Password"
               type="password"
               id="password"
               autoComplete="current-password"
+              ref={password}
+            />
+            <TextField
+              margin="normal"
+              required={true}
+              fullWidth
+              name="username"
+              label="User Name"
+              type="text"
+              id="username"
+              ref={username}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -86,6 +115,7 @@ export default function SignIn() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              disabled={isFetching}
             >
               Sign In
             </Button>

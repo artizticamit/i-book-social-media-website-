@@ -5,15 +5,24 @@ import "./topbar.css"
 import {Link} from "react-router-dom";
 import React from 'react'
 import ReactDOM from 'react-dom'
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 
 
 
-export default function Topbar() {
-    // const toggle = document.querySelector(".toggle-icon");
-    // toggle.addEventListener("click", (e)=>{
-    //     e.target.style.backgroundColor = "white";
-    // })
+export default function Topbar({username}) {
+    const [userData, setUserData] = useState({});
+    // console.log("username = "+ username);
+
+    useEffect(()=>{
+        const fetchUserData = async () => {
+            const res = await axios.get("http://localhost:8000/api/user?username="+username);
+            setUserData(res.data);
+            // console.log("res =",res);
+        }
+        fetchUserData();
+    }, [])
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   return (
     <>
@@ -51,7 +60,7 @@ export default function Topbar() {
                     <ToggleOffOutlined className='toggle-icon' />
                 </div>
                 <div className="image-container">
-                    <a href='/profile'> <img className='image' src={PF + "/person/1.jpeg"} alt="" /> </a>
+                    <a href={`/profile/${userData.username}`}> <img className='image' src={PF + (userData.profilePicture!==""?userData.profilePicture: "person/noAvatar.png")} alt="" /> </a>
                 </div>
             </div>
         </div>
