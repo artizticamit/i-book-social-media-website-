@@ -29,8 +29,9 @@
 
 .rightbar-content-text
 {
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    /* font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
     font-size: 15px;
+    font-weight: 900;
     /* margin-bottom: 10px; */
 }
 
