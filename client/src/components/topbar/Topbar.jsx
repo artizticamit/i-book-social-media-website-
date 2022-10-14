@@ -27,7 +27,7 @@ export default function Topbar() {
                     
                     <Search />
                 </div>
-                <input type="text" placeholder='Search something.....' className='search-box' />
+                <input type="text" placeholder='Searc I-book' className='search-box' />
                 <span className="search-border"></span>
             </div>
             <div className="menu-container">

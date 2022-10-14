@@ -11,7 +11,7 @@
 
 .share-wrapper
 {
-    padding: 10px;
+    padding: 12px;
 }
 .share-top
 {
@@ -81,11 +81,11 @@
 
 .share-btn
 {
-    background-color: green;
+    background-color: rgb(23, 185, 23);
     color: #fff;
-    padding: 5px;
+    padding: 8px;
     border: none;
-    /* border-radius: 5px; */
+    border-radius: 8%;
     cursor: pointer;
     font-size: 20px;
     transition: all 0.15s;
@@ -93,6 +93,6 @@
 
 .share-btn:hover
 {
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5)
+    box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.263)
     
 }
