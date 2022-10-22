@@ -4,7 +4,7 @@
     align-items: center;
     height: 45px;
     position: sticky;
-    background-color: orangered;
+    background-color: rgb(235, 81, 25);
     top:0px;
     z-index: 2;
 }
@@ -60,11 +60,11 @@
 
 .border-bottom
 {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgb(15, 14, 14);
     width: 266px;
     position: absolute;
-    top: 24px;
-    left: 35px;
+    top: 26px;
+    left: 38px;
 }
 
 .menu-container
@@ -72,12 +72,12 @@
     display: flex;
     align-items: center;
     position: relative;
-    right: 35%;
+    right: 37%;
     /* padding: 5px 5px; */
 }
 .menu-items
 {
-    margin: 0px 3px;
+    margin: 0px 5px;
     cursor: pointer;
 }
 
@@ -125,8 +125,8 @@
     cursor: pointer;
 }
 .image{
-    height: 35px;
-    width: 35px;
+    height: 38px;
+    width: 38px;
     border-radius: 50%;
     object-fit: cover;
 }
