@@ -1,6 +1,11 @@
 # This is a social media website(i-book)
 - This is just normal project where I have tried cloning a social media website and adding some new ideas.
 - I have thought of making the user anonymous in his/her friends circle and posting and enjoying.
+- This will also feature uploading photos videos and locations with friends
+- You can form groups as well as see what is trending around you
+
+![Screenshot_1](https://user-images.githubusercontent.com/78680046/197323291-7bbfd05b-1398-4ff4-8a1b-e4dbb4bbf823.png)
+
 
 # To contribute follow the followings guidelines.
 ## To access this fork and then clone it:-
