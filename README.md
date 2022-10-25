@@ -7,6 +7,12 @@
 ![Screenshot_1](https://user-images.githubusercontent.com/78680046/197323291-7bbfd05b-1398-4ff4-8a1b-e4dbb4bbf823.png)
 
 
+# Run it with Docker
+```
+docker build -t i-book-social-media-web .
+docker run -ti --rm -p 3000:3000 i-book-social-media-web
+```
+
 # To contribute follow the followings guidelines.
 ## To access this fork and then clone it:-
 - Fork it and star it , then clone with <code> git clone <repo_link> </code> command. 
