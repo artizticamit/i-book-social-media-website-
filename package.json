@@ -8,7 +8,9 @@
   "description": "- This is just normal project where I have tried cloning a social media website and adding some new ideas.\r - I have thought of making the user anonymous in his/her friends circle and posting and enjoying.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "npm run start -w client",
+    "server": "npm run start -w api"
   },
   "repository": {
     "type": "git",
