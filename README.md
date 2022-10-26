@@ -19,3 +19,19 @@
 ## To start both the frontend and backend service at the same time
 
 - <code>docker-compose up</code>
+
+## To start the server side development locally in docker container
+
+- <code> cd api </code>
+
+- <code> docker build -t '<docker-image-name>' . </code>
+
+- <code> docker run -p 8000:8000 '<image ID>' </code>
+
+## To start the client side development locally in docker container
+
+- <code> cd client </code>
+
+- <code> docker build -t '<docker-image-name>' . </code>
+
+- <code> docker run -p 3000:3000 '<image ID>' </code>
