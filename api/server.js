@@ -16,9 +16,9 @@ const app = express();
 
 dotenv.config();
 
-// mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true},()=>{
-//     console.log("Connected to mongoDB")
-// });
+mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true }, () => {
+  console.log("Connected to mongoDB");
+});
 
 // Middle ware
 app.use(express.urlencoded({ extended: true }));
