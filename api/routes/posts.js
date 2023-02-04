@@ -4,7 +4,9 @@ const postMethod = require("../controllers/postController");
 
 // Create a post
 
-router.post("/");
+router.post("/", (req, res)=>{
+    res.send("Hello World");
+});
 
 //Update a post
 

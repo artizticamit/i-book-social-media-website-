@@ -13,6 +13,8 @@ export default function Topbar() {
     // toggle.addEventListener("click", (e)=>{
     //     e.target.style.backgroundColor = "white";
     // })
+    // When rendering topbar I have to check if the user is logged in or not.
+    
   return (
     <>
         <div className="container">
@@ -49,7 +51,7 @@ export default function Topbar() {
                     <ToggleOffOutlined className='toggle-icon' />
                 </div>
                 <div className="image-container">
-                    <a href='/profile'> <img className='image' src="./assets/person/1.jpeg" alt="" /> </a>
+                    <a href={'/profile'+'/'}> <img className='image' src="./assets/person/1.jpeg" alt="" /> </a>
                 </div>
             </div>
         </div>

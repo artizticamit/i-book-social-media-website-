@@ -6,7 +6,7 @@ export default function OnlineUsers({user}) {
     <div className="online-users-container">
         <div className="online-friends-list">
             <div className="online-friend">
-              <img src={PF+user.profilePicture} alt="" className="friend-profile-pic" />
+              <img src={"/assets/"+user.profilePicture} alt="" className="friend-profile-pic" />
               <span className="img-highlight-green"></span>
               <span className="friend-name">{user.username}</span>
             </div>

@@ -8,7 +8,7 @@ const bcrypt = require("bcrypt");
 //     console.log(x);
 //     req.params.name = "kumar";
 //     console.log(req.params.name);
-//     res.send("Hey it is api")
+//     res.send("Hey it is api "+x)
 
 // })
 
@@ -59,11 +59,13 @@ router.delete("/:id", async (req, res)=>{
 //Get a user
 router.get("/:id", async (req, res)=>{
     try{
+        console.log(req.params.id);
         const user = await User.findById(req.params.id);
         const {password, updatedAt, ...other} = user._doc
 
         res.status(200).json(other);
     }catch(err){
+        console.log(err);
         res.status(500).json(err);
     }
 })

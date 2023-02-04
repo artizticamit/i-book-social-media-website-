@@ -2,8 +2,8 @@
 {
     flex: 3.7;
     height: 98vh;
-    overflow-y: scroll;
-    scrollbar-width: none;
+    /* overflow-y: scroll; */
+    /* scrollbar-width: none; */
     
 }
 

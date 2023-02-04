@@ -47,35 +47,35 @@ export default function Rightbar({ profile }) {
           <h4 className="rightbar-title">User friends</h4>
           <div className="rightbar-followings">
             <div className="rightbar-following">
-              <img src="./assets/person/1.jpeg" alt="" className="rightbar-following-img" />
+              <img src="/assets/person/1.jpeg" alt="" className="rightbar-following-img" />
               <span className="rightbar-following-name">jamie</span>
             </div>
             <div className="rightbar-following">
-              <img src="./assets/person/2.jpeg" alt="" className="rightbar-following-img" />
+              <img src="/assets/person/2.jpeg" alt="" className="rightbar-following-img" />
               <span className="rightbar-following-name">frey</span>
             </div>
             <div className="rightbar-following">
-              <img src="./assets/person/3.jpeg" alt="" className="rightbar-following-img" />
+              <img src="/assets/person/3.jpeg" alt="" className="rightbar-following-img" />
               <span className="rightbar-following-name">walda</span>
             </div>
             <div className="rightbar-following">
-              <img src="./assets/person/4.jpeg" alt="" className="rightbar-following-img" />
+              <img src="/assets/person/4.jpeg" alt="" className="rightbar-following-img" />
               <span className="rightbar-following-name">walda</span>
             </div>
             <div className="rightbar-following">
-              <img src="./assets/person/5.jpeg" alt="" className="rightbar-following-img" />
+              <img src="/assets/person/5.jpeg" alt="" className="rightbar-following-img" />
               <span className="rightbar-following-name">walda</span>
             </div>
             <div className="rightbar-following">
-              <img src="./assets/person/6.jpeg" alt="" className="rightbar-following-img" />
+              <img src="/assets/person/6.jpeg" alt="" className="rightbar-following-img" />
               <span className="rightbar-following-name">walda</span>
             </div>
             <div className="rightbar-following">
-              <img src="./assets/person/7.jpeg" alt="" className="rightbar-following-img" />
+              <img src="/assets/person/7.jpeg" alt="" className="rightbar-following-img" />
               <span className="rightbar-following-name">walda</span>
             </div>
             <div className="rightbar-following">
-              <img src="./assets/person/8.jpeg" alt="" className="rightbar-following-img" />
+              <img src="/assets/person/8.jpeg" alt="" className="rightbar-following-img" />
               <span className="rightbar-following-name">walda</span>
             </div>
           </div>

@@ -16,8 +16,8 @@ export default function Profile() {
         <div className="profile-right">
           <div className="profile-right-top">
             <div className="profile-cover">
-              <img src={`${PF}post/9.jpeg`} alt="" className="profile-cover-img" />
-              <img src={`${PF}person/9.jpeg`} alt="" className="profile-user-img" />
+              <img src={`/assets/post/9.jpeg`} alt="" className="profile-cover-img" />
+              <img src={`/assets/person/9.jpeg`} alt="" className="profile-user-img" />
             </div>
           </div>
           <div className="profile-info">

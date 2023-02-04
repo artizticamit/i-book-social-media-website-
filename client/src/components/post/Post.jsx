@@ -28,7 +28,7 @@ export default function ({post}) {
         <div className="post-wrapper">
           <div className="post-top">
             <div className="post-top-left">
-              <img src={PF+Users.filter((u)=> u.id === post.userId ).map((user)=>user.profilePicture)} alt="" className="post-profile-pic" />
+              <img src={"/assets/"+Users.filter((u)=> u.id === post.userId ).map((user)=>user.profilePicture)} alt="" className="post-profile-pic" />
               <span className="post-username">{Users.filter((u)=> u.id === post.userId ).map((user)=>user.username)}</span>
               <span className="post-timelapse" >{post.date}</span>
 
@@ -39,13 +39,13 @@ export default function ({post}) {
           </div>
           <div className="post-center">
             <span className="post-center-text">{post.desc}</span>
-            <img src={PF+post.photo} alt="" className="post-center-img" />
+            <img src={"/assets/"+post.photo} alt="" className="post-center-img" />
           </div>
           <div className="post-bottom">
             <div className="post-bottom-left">
               <div className="post-likes">
-                <img  src="./assets/like.png" alt="" className="post-like-icon" onClick={likeHandler} />
-                <img  src="./assets/heart.png" alt="" className="post-like-icon" onClick={likeHandler} />
+                <img  src="/assets/like.png" alt="" className="post-like-icon" onClick={likeHandler} />
+                <img  src="/assets/heart.png" alt="" className="post-like-icon" onClick={likeHandler} />
                 <span className="post-likes-counter">{like} people like this.</span>
               </div>
             </div>
