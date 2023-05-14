@@ -12,6 +12,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -28,7 +30,10 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignIn() {
+export default function SignIn(props) {
+  // const [loggedIn, setLoggedIn] = React.useState(false);
+  const navigate = useNavigate();
+  // if
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -36,6 +41,12 @@ export default function SignIn() {
       email: data.get('email'),
       password: data.get('password'),
     });
+    // props.callBackFunc(true);
+
+    //after login set loggedIn to true
+    //and redirect to home page
+    navigate('/');
+    
   };
 
   return (
@@ -56,7 +67,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Login
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSubmit} onClick={()=>{props.callBackFunc(true)}} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required={true}
