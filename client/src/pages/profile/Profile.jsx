@@ -23,6 +23,8 @@ export default function Profile() {
     fetchUser();
   },[username])
 
+  // console.log("profile = ",user.profilePicture?PF+user.profilePicture:PF+"ad.png")
+
   return (
     <>
       <Topbar user={user}/>
@@ -39,7 +41,7 @@ export default function Profile() {
             <h4 className="profile-info-name">{user.username}</h4>
           </div>
           <div className="profile-right-bottom">
-            <Feed userid={user._id} username={username} />
+            <Feed username={username} />
             <Rightbar user={user} />
           </div>
         </div>

@@ -34,11 +34,11 @@ export default function Home() {
 
   return (
       <>
-          <Topbar user={user}/>
+          <Topbar />
           <div className="home-container">
             <Sidebar />
             <Feed />
-            <Rightbar />
+            <Rightbar user={user} />
           </div>
         
       </>

@@ -5,6 +5,8 @@ import "./topbar.css"
 import {Link} from "react-router-dom";
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 
 
@@ -14,6 +16,8 @@ export default function Topbar(props) {
     //     e.target.style.backgroundColor = "white";
     // })
     // When rendering topbar I have to check if the user is logged in or not.
+
+    const {user:currentUser} = useContext(AuthContext);
 
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     
@@ -53,7 +57,7 @@ export default function Topbar(props) {
                     <ToggleOffOutlined className='toggle-icon' />
                 </div>
                 <div className="image-container">
-                    <a href={'/profile/'+props.user.username}> <img className='image' src={props.user.profilePicture?PF+props.user.profilePicture:PF+"person/noAvatar.png"} alt="" /> </a>
+                    <a href={'/profile/'+currentUser.username}> <img className='image' src={currentUser.profilePicture?PF+currentUser.profilePicture:PF+"person/noAvatar.png"} alt="" /> </a>
                 </div>
             </div>
         </div>

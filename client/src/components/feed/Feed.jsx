@@ -26,7 +26,9 @@ export default function Feed(props) {
       : await axios.get(`http://localhost:8000/api/posts/timeline/${user._id}`)
       
       console.log(res);
-      setPosts(res.data);
+      setPosts(res.data.sort((p1, p2)=>{
+        return new Date(p2.createdAt) - new Date(p1.createdAt)
+      }));
       // example user id : 61ecdc3e19c3ac8008b995ce
       // console.log(res);
     }
@@ -37,7 +39,7 @@ export default function Feed(props) {
   return (
     <div className="feed-container">
       <div className="feed-wrapper">
-        <Share username={props.username}/>
+        {user.username===props.username && <Share />}
         {/* <div>Total posts = {posts.length}</div> */}
         {posts && posts.map((p)=>(
           <Post key={p._id} post={p}/>

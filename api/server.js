@@ -7,6 +7,8 @@ const helmet = require("helmet");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
+const multer = require("multer");
+const path = require("path");
 
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
@@ -28,21 +30,53 @@ app.use(cors());
 app.use(helmet());
 app.use(morgan("common"));
 
+
+
 app.use("/api/user", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
 
+
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "http://localhost:8000"],
     methods: ["GET", "POST"],
     credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization'],
   })
 );
 
-// app.get("/", (req, res)=>{
-//     res.send("Amit Kumar");
-// })
+
+// I enabled the cors in the server.js file and it worked for me.
+app.use((req, res, next)=>{
+  res.set('Cross-Origin-Resource-Policy', 'cross-origin');
+  next();
+})
+  
+  const storage = multer.diskStorage({
+    destination: (req, file, cb)=>{
+      cb(null, "public/images")
+    },
+    filename: (req, file, cb)=>{
+      cb(null, req.body.name)
+    },
+  })
+  
+  const upload = multer({storage: storage});
+  app.post("/api/upload", upload.single("file"), (req, res)=>{
+    res.set("Access-Control-Allow-Origin", "*")
+    try{
+      return res.status(200).json("File uploaded successfully");
+    }
+    catch(err)
+    {
+      console.log(err);
+    }
+  })
+  
+  app.use("/images", express.static(path.join(__dirname, "/public/images")))
+  // console.log("dirname = ",path.join(__dirname, "/public/images"))
+
 
 // app.post("/login", (req, res)=>{
 //     console.log(req.body);

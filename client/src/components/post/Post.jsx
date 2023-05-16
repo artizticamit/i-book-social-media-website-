@@ -6,6 +6,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from "axios";
 import {format} from "timeago.js"
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 
 
 
@@ -18,6 +21,8 @@ export default function ({post}) {
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
+
+  const {user:currentUser} = useContext(AuthContext);
 
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
@@ -34,17 +39,33 @@ export default function ({post}) {
 
 
   const likeHandler = ()=>{
+    // first we have to fetch the post and check if the current user have liked the post or not and handle tha case.
+
+    try{
+      axios.put("http://localhost:8000/api/posts/"+post._id+"/like", {userId: currentUser._id})
+    }
+    catch(err){
+      console.log(err)
+    }
+
     setLike(isLiked ? like-1 : like+1);
     setIsLiked(isLiked? false : true);
   }
+
+  useEffect(()=>{
+    setIsLiked(post.likes.includes(currentUser._id))
+
+  },[currentUser._id, post.likes])
   
   return (
     <div className="post-container">
         <div className="post-wrapper">
           <div className="post-top">
             <div className="post-top-left">
+            <a href={`/profile/${user.username}`} style={{textDecoration:"none", color:"black", display:"flex", alignItems:"center"}}>
               <img src={user.profilePicture?PF+user.profilePicture:PF+"person/noAvatar.png"} alt="" className="post-profile-pic" />
               <span className="post-username">{user.username}</span>
+            </a>
               <span className="post-timelapse" >{format(post.createdAt)}</span>
 
             </div>

@@ -4,40 +4,68 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from "axios";
 import {useState, useEffect} from "react";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import {useRef} from "react";
 
 
-export default function Share(props) {
+export default function Share() {
 
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
-    const [user, setUser] = useState({});
+    const {user:currentUser} = useContext(AuthContext);
 
-    useEffect(()=>{
-        const fetchUsers = async ()=>{
-            const response = await axios.get(`http://localhost:8000/api/user?username=${props.username}`)
-            setUser(response.data)
-            // console.log(response)
+    const desc = useRef();
+
+    const [file, setFile] = useState(null);
+
+    const submitHandle = async (e)=>{
+        e.preventDefault();
+        // console.log(desc.current.value)
+        const newPost = {
+            userId : currentUser._id,
+            desc : desc.current.value
+        };
+
+        if(file){
+            const data = new FormData();
+            const fileName = Date.now() + file.name;
+            data.append("name", fileName);
+            data.append("file", file);
+            newPost.img = fileName;
+            console.log(newPost)
+            try{
+                await axios.post("http://localhost:8000/api/upload", data)
+
+            }catch(err){}
         }
-        fetchUsers();
-        // console.log("post =",user)
-    },[])
+
+        try{
+            await axios.post("http://localhost:8000/api/posts", newPost)
+            window.location.reload();
+        }
+        catch(err){
+            console.log(err)
+        }
+    }
 
   return (
     <div className="share-container">
         <div className="share-wrapper">
             <div className="share-top">
-                <img className="share-profile-pic" src={user.profilePicture?PF+user.profilePicture:PF+"person/noAvatar.png"} alt="" />
-                <input type="text" className="share-input" placeholder="What's in your mind ?"/>
+                <img className="share-profile-pic" src={currentUser.profilePicture?PF+currentUser.profilePicture:PF+"person/noAvatar.png"} alt="" />
+                <input type="text" className="share-input" placeholder={"What's in your mind "+currentUser.username+" ?"} ref={desc}/>
             </div>
             <hr className="share-hr"/>
-            <div className="share-bottom">
+            <form className="share-bottom" onSubmit={submitHandle}>
                 <div className="share-options">
-                    <div className="share-option">
+                    <label htmlFor="file" className="share-option">
                         <PermMedia htmlColor="tomato" className="share-icon"/>
                         <span className="share-option-text">
                             Photo or Video
                         </span>
-                    </div>
+                        <input style={{display:"none"}} type="file" id="file" accept=".png,.jpeg, .jpg" onChange={(e)=>setFile(e.target.files[0])}/>
+                    </label>
                     <div className="share-option">
                         <Label htmlColor="blue" className="share-icon"/>
                         <span className="share-option-text">
@@ -57,8 +85,8 @@ export default function Share(props) {
                         </span>
                     </div>
                 </div>
-                <button className="share-btn">Share</button>
-            </div>
+                <button className="share-btn" type="submit">Share</button>
+            </form>
         </div>
     </div>
   )
