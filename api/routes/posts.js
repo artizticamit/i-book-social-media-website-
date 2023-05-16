@@ -4,9 +4,7 @@ const postMethod = require("../controllers/postController");
 
 // Create a post
 
-router.post("/", (req, res)=>{
-    res.send("Hello World");
-});
+router.post("/", postMethod.createPostHandler);
 
 //Update a post
 
@@ -26,5 +24,9 @@ router.get("/:id", postMethod.getPost);
 // get timeline posts
 
 router.get("/timeline/:userId", postMethod.getTimeline);
+
+// get user's all posts
+
+router.get("/profile/:username", postMethod.getUserPosts)
 
 module.exports = router;

@@ -12,6 +12,11 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
+import Stack from '@mui/material/Stack';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
 function Copyright(props) {
   return (
@@ -26,16 +31,62 @@ function Copyright(props) {
   );
 }
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 const theme = createTheme();
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
+
+  const navigate = useNavigate();
+
+  const [signupData, setSignupData] = React.useState({
+    email:'',
+    username:'',
+    password:''
+  })
+
+  const [err, setErr] = React.useState(false);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
       password: data.get('password'),
     });
+
+    try{
+      const response = await axios.post('http://localhost:8000/api/auth/register', signupData)
+      console.log(response)
+      navigate('/login')
+    }
+    catch(err)
+    {
+      setErr(true);
+      console.log(err);
+    }
+
+
+  };
+
+  const handleChange = (e)=>{
+    setSignupData({...signupData, [e.target.name]:e.target.value})
+  }
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
   };
 
   return (
@@ -65,7 +116,22 @@ export default function SignIn() {
               label="Email Address"
               name="email"
               autoComplete="email"
+              value={signupData.email}
+              onChange={handleChange}
+
               autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="username"
+              value={signupData.username}
+              onChange={handleChange}
+              // autoFocus
             />
             <TextField
               margin="normal"
@@ -76,6 +142,8 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
+              value={signupData.password}
+              onChange={handleChange}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -86,9 +154,16 @@ export default function SignIn() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              onClick={handleClick}
             >
               Sign In
             </Button>
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+              {!err && <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                Error!
+              </Alert>}
+            </Snackbar>
+            {/* <Alert severity="success">This is a success message!</Alert> */}
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">

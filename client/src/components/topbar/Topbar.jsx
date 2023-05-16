@@ -8,12 +8,14 @@ import ReactDOM from 'react-dom'
 
 
 
-export default function Topbar() {
+export default function Topbar(props) {
     // const toggle = document.querySelector(".toggle-icon");
     // toggle.addEventListener("click", (e)=>{
     //     e.target.style.backgroundColor = "white";
     // })
     // When rendering topbar I have to check if the user is logged in or not.
+
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     
   return (
     <>
@@ -51,7 +53,7 @@ export default function Topbar() {
                     <ToggleOffOutlined className='toggle-icon' />
                 </div>
                 <div className="image-container">
-                    <a href={'/profile'+'/'}> <img className='image' src="./assets/person/1.jpeg" alt="" /> </a>
+                    <a href={'/profile/'+props.user.username}> <img className='image' src={props.user.profilePicture?PF+props.user.profilePicture:PF+"person/noAvatar.png"} alt="" /> </a>
                 </div>
             </div>
         </div>

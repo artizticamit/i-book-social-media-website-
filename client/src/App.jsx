@@ -5,18 +5,18 @@ import Profile from "./pages/profile/Profile";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
+// import { LoginContext } from "./pages/contexts/LoginContext.jsx";
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
 
 
 
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = React.useState(false);
 
-  let callback = (valueFromLogin) =>{
-    setLoggedIn(valueFromLogin);
-  }
 
+ const {user} = useContext(AuthContext);
 
   return ( 
     <>
@@ -24,12 +24,16 @@ function App() {
         <Routes>
         
           <Route exact path='/' element={
-            loggedIn ? <Home />: <Navigate to='/login'/>
+            user ? <Home /> : <Login /> 
           }/> 
-            {/* {loggedIn ? <Home/> : <Navigate to='/login'/>} */}
+            
           
-          <Route exact path='/signup' element={<Signup />}/>
-          <Route exact path='/login' element={<Login loggedIn={loggedIn} callBackFunc={callback} />}/>
+          <Route exact path='/signup' element={
+          user?<Navigate to={'/'}/>:<Signup />
+          }/>
+          <Route exact path='/login' element={
+          user?<Navigate to={'/'}/>:<Login />
+          }/>
           <Route exact path='/profile/:username' element={<Profile />}/>
         </Routes>
       </Router>

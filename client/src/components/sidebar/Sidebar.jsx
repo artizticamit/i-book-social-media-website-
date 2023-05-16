@@ -4,9 +4,18 @@ import {Users} from "../../dummyData"
 import CloseFriend from "../closeFriend/CloseFriend"
 import React from 'react'
 import ReactDOM from 'react-dom'
+import {Link} from "react-router-dom"
 
 
 export default function Sidebar() {
+
+  const style={
+    textDecoration: "none",
+    color: "inherit"
+
+  }
+
+
   return (
     <div className="sidebar-container">
       <div className="sidebarWrapper">
@@ -14,7 +23,7 @@ export default function Sidebar() {
           <li className="sidebar-list-item">
             <Home className="sidebar-list-icon"/>
             <span className="sidebar-list-item-text">
-              Home
+              <Link style={style} to={'/'}>Home</Link>
             </span>
           </li>
           <li className="sidebar-list-item">

@@ -2,14 +2,31 @@ import "./share.css"
 import {PermMedia, Label, EmojiEmotions, Room} from "@mui/icons-material"
 import React from 'react'
 import ReactDOM from 'react-dom'
+import axios from "axios";
+import {useState, useEffect} from "react";
 
 
-export default function Share() {
+export default function Share(props) {
+
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+    const [user, setUser] = useState({});
+
+    useEffect(()=>{
+        const fetchUsers = async ()=>{
+            const response = await axios.get(`http://localhost:8000/api/user?username=${props.username}`)
+            setUser(response.data)
+            // console.log(response)
+        }
+        fetchUsers();
+        // console.log("post =",user)
+    },[])
+
   return (
     <div className="share-container">
         <div className="share-wrapper">
             <div className="share-top">
-                <img className="share-profile-pic" src="/assets/person/2.jpeg" alt="" />
+                <img className="share-profile-pic" src={user.profilePicture?PF+user.profilePicture:PF+"person/noAvatar.png"} alt="" />
                 <input type="text" className="share-input" placeholder="What's in your mind ?"/>
             </div>
             <hr className="share-hr"/>

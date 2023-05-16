@@ -48,7 +48,7 @@ export const Posts = [
         photo: "post/1.jpeg",
         date: "5 mins ago",
         userId:1,
-        like:32,
+        likes:32,
         comment:9,
     },
     {
@@ -57,7 +57,7 @@ export const Posts = [
         photo: "post/2.jpeg",
         date: "15 mins ago",
         userId:2,
-        like:2,
+        likes:2,
         comment:0,
     },
     {
@@ -65,7 +65,7 @@ export const Posts = [
         photo: "post/3.jpeg",
         date: "1 min ago",
         userId:3,
-        like:1,
+        likes:1,
         comment:1,
     },
     {
@@ -74,7 +74,7 @@ export const Posts = [
         photo: "post/4.jpeg",
         date: "40 mins ago",
         userId:7,
-        like:90,
+        likes:90,
         comment:16,
     },
     {
@@ -83,7 +83,7 @@ export const Posts = [
         photo: "post/5.jpeg",
         date: "0 min ago",
         userId:5,
-        like:2,
+        likes:2,
         comment:0,
     },
     {
@@ -92,7 +92,7 @@ export const Posts = [
         photo: "post/6.jpeg",
         date: "0 min ago",
         userId:6,
-        like:12,
+        likes:12,
         comment:0,
     },
     {
@@ -101,7 +101,7 @@ export const Posts = [
         photo: "post/7.jpeg",
         date: "0 min ago",
         userId:4,
-        like:90,
+        likes:90,
         comment:1,
     },
     {
@@ -110,7 +110,7 @@ export const Posts = [
         photo: "post/8.jpeg",
         date: "0 min ago",
         userId:3,
-        like:22,
+        likes:22,
         comment:1,
     },
 ]

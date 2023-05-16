@@ -1,6 +1,7 @@
 const Post = require("../models/Post");
 const User = require("../models/User");
 
+// Create a post
 const createPostHandler = async (req, res) => {
   const newPost = new Post(req.body);
   try {
@@ -11,6 +12,7 @@ const createPostHandler = async (req, res) => {
   }
 };
 
+// Update's a post
 const updatePostHandler = async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -26,6 +28,8 @@ const updatePostHandler = async (req, res) => {
   }
 };
 
+
+// Delete's a post
 const deletePostHandler = async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -40,6 +44,7 @@ const deletePostHandler = async (req, res) => {
   }
 };
 
+// Like's a post
 const likeHandler = async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -55,6 +60,7 @@ const likeHandler = async (req, res) => {
   }
 };
 
+// Get a post
 const getPost = async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -68,6 +74,8 @@ const getPost = async (req, res) => {
   }
 };
 
+
+// Get timeline posts
 const getTimeline = async (req, res) => {
   try {
     const currentUser = await User.findById(req.params.userId);
@@ -86,6 +94,20 @@ const getTimeline = async (req, res) => {
   }
 };
 
+// Get user's all posts
+const getUserPosts = async (req, res) => {
+  try {
+    const currentUser = await User.findOne({username:req.params.username});
+
+    const posts = await Post.find({ userId: currentUser._id });
+    res.status(200).json(posts);
+    
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+};
+
 module.exports = {
   createPostHandler,
   updatePostHandler,
@@ -93,4 +115,5 @@ module.exports = {
   likeHandler,
   getPost,
   getTimeline,
+  getUserPosts,
 };

@@ -12,8 +12,15 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Navigate } from 'react-router-dom';
+import CircularProgress from '@mui/material/CircularProgress';
+// import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { loginCall } from '../../apiCalls';
+import { AuthContext } from '../../context/AuthContext';
+import { useContext } from 'react';
+// import {useRef} from 'react';
+// import { LoginContext } from '../contexts/LoginContext.jsx';
 
 function Copyright(props) {
   return (
@@ -31,23 +38,39 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn(props) {
-  // const [loggedIn, setLoggedIn] = React.useState(false);
-  const navigate = useNavigate();
-  // if
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-    // props.callBackFunc(true);
+  
 
-    //after login set loggedIn to true
-    //and redirect to home page
-    navigate('/');
-    
+  // const email = useRef();
+  // const password = useRef();
+
+  const [loginData, setLoginData] = React.useState({ email: '', password: '' });
+  const navigate = useNavigate();
+  const [userid, setUserid] = React.useState({}); 
+
+  // const {loggedIn, setLoggedIn} = useContext(LoginContext);
+
+  const {user,isFetching, error, dispatch} = useContext(AuthContext)
+
+
+  const handleChange = (event)=>{
+    setLoginData(
+      {
+        ...loginData,
+        [event.target.name]: event.target.value,
+      })
+      // console.log(loginData)
+
+      // console.log(loginData) // to check the login credentials.
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    loginCall({email:loginData.email, password:loginData.password},dispatch)
   };
+
+
+  console.log(user)
 
   return (
     <ThemeProvider theme={theme}>
@@ -67,7 +90,7 @@ export default function SignIn(props) {
           <Typography component="h1" variant="h5">
             Login
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} onClick={()=>{props.callBackFunc(true)}} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSubmit}  noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required={true}
@@ -76,6 +99,9 @@ export default function SignIn(props) {
               label="Email Address"
               name="email"
               autoComplete="email"
+              value={loginData.email}
+              onChange={handleChange}
+              // ref={email}
               autoFocus
             />
             <TextField
@@ -86,7 +112,11 @@ export default function SignIn(props) {
               label="Password"
               type="password"
               id="password"
+              minLength="6"
               autoComplete="current-password"
+              value={loginData.password}
+              onChange={handleChange}
+              // ref={password}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -97,8 +127,9 @@ export default function SignIn(props) {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              disabled={isFetching}
             >
-              Sign In
+             {isFetching ? <CircularProgress color="inherit" size="24px"/> : "Sign In"}
             </Button>
             <Grid container>
               <Grid item xs>

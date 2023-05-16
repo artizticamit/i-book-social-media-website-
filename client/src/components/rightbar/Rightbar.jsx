@@ -5,7 +5,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 
-export default function Rightbar({ profile }) {
+export default function Rightbar({ user }) {
 
   const HomeRightbar = () => {
     return (
@@ -34,15 +34,15 @@ export default function Rightbar({ profile }) {
         <div className="rightbar-info">
           <div className="rightbar-info-item">
             <span className="rightbar-info-key">City: </span>
-            <span className="rightbar-info-value">Delhi</span>
+            <span className="rightbar-info-value">{user.city || "NA"}</span>
           </div>
           <div className="rightbar-info-item">
             <span className="rightbar-info-key">From: </span>
-            <span className="rightbar-info-value">Jharkhand</span>
+            <span className="rightbar-info-value">{user.from || "NA"}</span>
           </div>
           <div className="rightbar-info-item">
             <span className="rightbar-info-key">Relationship: </span>
-            <span className="rightbar-info-value">what is that?</span>
+            <span className="rightbar-info-value">{user.relationship || "NA"}</span>
           </div>
           <h4 className="rightbar-title">User friends</h4>
           <div className="rightbar-followings">
@@ -87,7 +87,7 @@ export default function Rightbar({ profile }) {
   return (
     <div className="rightbar-container">
       <div className="rightbar-wrapper">
-        {profile ? <ProfileRightbar /> : <HomeRightbar />}
+        {user ? <ProfileRightbar /> : <HomeRightbar />}
       </div>
     </div>
   )
