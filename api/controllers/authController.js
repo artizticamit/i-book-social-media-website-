@@ -1,9 +1,21 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const validator = require('validator')
 
 const handleRegister = async (req, res) => {
   try {
     // Generate hashed password
+    const exists = await User.findOne({ email: req.body.email })
+    if (exists) {
+      throw Error('Email already in use!')
+    }
+    if ((!req.body.email || !req.body.password) || !req.body.username) {
+      throw Error("All fields must be filled")
+    }
+    if (!validator.isEmail(req.body.email)) {
+      throw Error('Email is not valid')
+    }
+
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
@@ -19,7 +31,8 @@ const handleRegister = async (req, res) => {
     console.log(user);
     res.status(200).json(user);
   } catch (err) {
-    res.status(500).json(err);
+    console.log(err.message)
+    res.status(400).json(err.message);
   }
 };
 
@@ -27,22 +40,22 @@ const handleLogin = async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
     // console.log("user = "+user);
-    if (user) {
-      const validPassword = bcrypt
-        .compare(req.body.password, user.password)
-        .then((response) => {
-          console.log("response = ", response);
-          if (response) {
-            res.status(200).json(user);
-          } else {
-            res.status(400).json("Wrong Password");
-          }
-        });
-    } else {
-      res.status(404).json("User not found");
+    if ((!req.body.email || !req.body.password)) {
+      throw Error("All fields must be filled")
     }
+    if (!user) {
+      throw Error('Invalid Email');
+    }
+
+    const validated = await bcrypt.compare(req.body.password, user.password);
+    if (!validated) {
+      throw Error('Wrong Passsword');
+    }
+
+    res.status(200).json(user)
+
   } catch (err) {
-    res.status(404).json("User not found");
+    res.status(400).json(err.message);
   }
 };
 

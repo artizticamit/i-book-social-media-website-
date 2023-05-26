@@ -18,9 +18,18 @@ export default function ({post}) {
   // if(user.length>0)console.log(user[0].username);
   // user.map((u)=> console.log(u));
 
+  const options = [
+   {value:"delete", label:"delete"},
+   {value:"edit", label:"edit"},
+   {value:"save", label:"save"},
+  ]
+
+
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
+  const [showmenu, setShowmenu] = useState(false);
+  const [selectedvalue, setSelectedvalue] = useState(null);
 
   const {user:currentUser} = useContext(AuthContext);
 
@@ -30,11 +39,11 @@ export default function ({post}) {
     const fetchUsers = async ()=>{
       const response = await axios.get(`http://localhost:8000/api/user?userId=${post.userId}`)
       setUser(response.data)
-      console.log(response)
+      // console.log(response)
       
     }
     fetchUsers();
-    console.log("post =",user)
+    // console.log("post =",user)
   }, [post.userId])
 
 
@@ -56,6 +65,17 @@ export default function ({post}) {
     setIsLiked(post.likes.includes(currentUser._id))
 
   },[currentUser._id, post.likes])
+
+  const handlePostClick = ()=>{
+    setShowmenu(!showmenu)
+  }
+
+  const handleItemClick = (option)=>{
+    setSelectedvalue(option);
+    setShowmenu(!showmenu)
+    console.log(selectedvalue.value)
+  }
+
   
   return (
     <div className="post-container">
@@ -69,8 +89,14 @@ export default function ({post}) {
               <span className="post-timelapse" >{format(post.createdAt)}</span>
 
             </div>
-            <div className="post-top-right">
+            <div className="post-top-right" onClick={handlePostClick}>
               <MoreVert />
+              {showmenu && <div className="dropdown-menu">
+                {options.map(option=>{
+                  return <div key={option.value} onClick={()=>{handleItemClick(option)}} className="dropdown-item">{option.value}</div>
+                })}
+              </div>
+              }
             </div>
           </div>
           <div className="post-center">

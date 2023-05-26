@@ -19,7 +19,7 @@ export default function Home() {
   // const [user, setUser] = useState({});
 
   const {user} = useContext(AuthContext)
-  console.log("user data =",user)
+  // console.log("user data =",user)
 
   useEffect(()=>{
     const fetchUsers = async ()=>{
@@ -29,7 +29,7 @@ export default function Home() {
       
     }
     fetchUsers();
-    console.log("post =",user)
+    // console.log("post =",user)
   }, [])
 
   return (

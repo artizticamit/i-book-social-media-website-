@@ -7,27 +7,34 @@ import React from "react";
 import {useState, useEffect} from "react";
 import axios from "axios"
 import { useParams } from "react-router";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthContext";
 
 export default function Profile() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   const [user, setUser] = useState({});
   const username = useParams().username;
-  // console.log(params);
+  const {user:currentUser} = useContext(AuthContext)
+  // console.log("user dat form authcontext",currentUser);
 
   useEffect(()=>{
     const fetchUser = async ()=>{
-      const res = await axios.get(`http://localhost:8000/api/user?username=${username}`);
-      setUser(res.data);
+      
+        const res = await axios.get(`http://localhost:8000/api/user?username=${username}`);
+        setUser(res.data);
+        console.log("profile mai milne wala data= ",res.data);
     }
     fetchUser();
   },[username])
+
+  // console.log("profile = ",username, user)
 
   // console.log("profile = ",user.profilePicture?PF+user.profilePicture:PF+"ad.png")
 
   return (
     <>
-      <Topbar user={user}/>
+      {user.username && <Topbar user={user}/>}
       <div className="profile-container">
         <Sidebar />
         <div className="profile-right">
@@ -38,11 +45,11 @@ export default function Profile() {
             </div>
           </div>
           <div className="profile-info">
-            <h4 className="profile-info-name">{user.username}</h4>
+            <h4 className="profile-info-name">{user.username&& user.username}</h4>
           </div>
           <div className="profile-right-bottom">
-            <Feed username={username} />
-            <Rightbar user={user} />
+            {user.username && <Feed username={username} />}
+            {user.username && <Rightbar user={currentUser} username={username} />}
           </div>
         </div>
       </div>

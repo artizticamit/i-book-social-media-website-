@@ -59,8 +59,8 @@ router.delete("/:id", async (req, res)=>{
 //Get a user
 router.get("/", async (req, res)=>{
     const userId = req.query.userId
-    console.log("userId = ",userId);
     const username = req.query.username
+    console.log("userId or username = ",userId?userId:username);
     try{
         // console.log(req.params.id);
         const user = userId ? await User.findById(userId): await User.findOne({username: username})

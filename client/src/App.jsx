@@ -5,6 +5,7 @@ import Profile from "./pages/profile/Profile";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
+import Temp from "./components/temp/Temp"
 // import { LoginContext } from "./pages/contexts/LoginContext.jsx";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
@@ -24,7 +25,7 @@ function App() {
         <Routes>
         
           <Route exact path='/' element={
-            user ? <Home /> : <Login /> 
+            user ? <Home /> : <Navigate to={'/login'}/>
           }/> 
             
           
@@ -35,6 +36,7 @@ function App() {
           user?<Navigate to={'/'}/>:<Login />
           }/>
           <Route exact path='/profile/:username' element={<Profile />}/>
+          <Route exact path='/temp/:username' element={<Temp user={user} />}/>
         </Routes>
       </Router>
     </>

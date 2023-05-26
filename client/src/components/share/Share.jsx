@@ -7,6 +7,7 @@ import {useState, useEffect} from "react";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import {useRef} from "react";
+import { Cancel } from "@mui/icons-material";
 
 
 export default function Share() {
@@ -57,6 +58,14 @@ export default function Share() {
                 <input type="text" className="share-input" placeholder={"What's in your mind "+currentUser.username+" ?"} ref={desc}/>
             </div>
             <hr className="share-hr"/>
+            {
+                file &&(
+                    <div className="share-img-container">
+                        <img className="share-img" src={URL.createObjectURL(file)} alt="" />
+                        <Cancel className="share-cancel-img" onClick={()=>setFile(null)}/>
+                    </div>
+                )
+            }
             <form className="share-bottom" onSubmit={submitHandle}>
                 <div className="share-options">
                     <label htmlFor="file" className="share-option">

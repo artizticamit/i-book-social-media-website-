@@ -15,6 +15,7 @@ export default function Feed(props) {
   const [posts, setPosts] = React.useState([]); 
   
   const {user} = useContext(AuthContext);
+  console.log('feed mai user ka data = ', user)
 
 
   useEffect(()=>{
@@ -39,7 +40,7 @@ export default function Feed(props) {
   return (
     <div className="feed-container">
       <div className="feed-wrapper">
-        {user.username===props.username && <Share />}
+        {(!props.username || user.username===props.username) && <Share />}
         {/* <div>Total posts = {posts.length}</div> */}
         {posts && posts.map((p)=>(
           <Post key={p._id} post={p}/>

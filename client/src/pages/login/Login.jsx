@@ -18,7 +18,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { loginCall } from '../../apiCalls';
 import { AuthContext } from '../../context/AuthContext';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
+import { useLogin } from '../../hooks/useLogin';
 // import {useRef} from 'react';
 // import { LoginContext } from '../contexts/LoginContext.jsx';
 
@@ -37,40 +38,26 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function SignIn(props) {
+export default function Login(props) {
   
 
   // const email = useRef();
   // const password = useRef();
-
-  const [loginData, setLoginData] = React.useState({ email: '', password: '' });
-  const navigate = useNavigate();
-  const [userid, setUserid] = React.useState({}); 
+  // const {login, error, isLoading} = useLogin();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   // const {loggedIn, setLoggedIn} = useContext(LoginContext);
 
   const {user,isFetching, error, dispatch} = useContext(AuthContext)
 
 
-  const handleChange = (event)=>{
-    setLoginData(
-      {
-        ...loginData,
-        [event.target.name]: event.target.value,
-      })
-      // console.log(loginData)
-
-      // console.log(loginData) // to check the login credentials.
-  }
-
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
-    loginCall({email:loginData.email, password:loginData.password},dispatch)
+    loginCall({email:email, password:password},dispatch)
+    // login({email:email, password:password});
   };
-
-
-  console.log(user)
 
   return (
     <ThemeProvider theme={theme}>
@@ -90,7 +77,7 @@ export default function SignIn(props) {
           <Typography component="h1" variant="h5">
             Login
           </Typography>
-          <Box component="form" onSubmit={handleSubmit}  noValidate sx={{ mt: 1 }}>
+          <Box component="form"  noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required={true}
@@ -99,8 +86,8 @@ export default function SignIn(props) {
               label="Email Address"
               name="email"
               autoComplete="email"
-              value={loginData.email}
-              onChange={handleChange}
+              value={email}
+              onChange={(e)=>{setEmail(e.target.value)}}
               // ref={email}
               autoFocus
             />
@@ -114,8 +101,8 @@ export default function SignIn(props) {
               id="password"
               minLength="6"
               autoComplete="current-password"
-              value={loginData.password}
-              onChange={handleChange}
+              value={password}
+              onChange={(e)=>{setPassword(e.target.value)}}
               // ref={password}
             />
             <FormControlLabel
@@ -128,9 +115,18 @@ export default function SignIn(props) {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               disabled={isFetching}
+              onClick={handleSubmit}
             >
-             {isFetching ? <CircularProgress color="inherit" size="24px"/> : "Sign In"}
+             {isFetching? <CircularProgress color="inherit" size="24px"/> : "Sign In"}
             </Button>
+            {error&&<div className='error' style={{
+              border:'1px solid red',
+              borderRadius:'5px',
+              padding:'1px 5px 1px 5px',
+              color:'red',
+              backgroundColor:'#ffe0e0',
+              margin:'5px 0px 10px 0px'
+            }}>{error}</div>}
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">

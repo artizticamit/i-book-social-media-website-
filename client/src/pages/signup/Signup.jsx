@@ -17,6 +17,9 @@ import {useNavigate} from 'react-router-dom';
 import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
+import {useSignup} from '../../hooks/useSignup'
+import { CircularProgress } from '@mui/material';
+import { useState } from 'react';
 
 function Copyright(props) {
   return (
@@ -41,53 +44,20 @@ export default function SignIn() {
 
   const navigate = useNavigate();
 
-  const [signupData, setSignupData] = React.useState({
-    email:'',
-    username:'',
-    password:''
-  })
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
 
-  const [err, setErr] = React.useState(false);
+  const {signup, error, isLoading} = useSignup();
+
+  // const [err, setErr] = React.useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-
-    try{
-      const response = await axios.post('http://localhost:8000/api/auth/register', signupData)
-      console.log(response)
-      navigate('/login')
-    }
-    catch(err)
-    {
-      setErr(true);
-      console.log(err);
-    }
-
-
+  
+    signup(email, password, username);
   };
 
-  const handleChange = (e)=>{
-    setSignupData({...signupData, [e.target.name]:e.target.value})
-  }
-
-  const [open, setOpen] = React.useState(false);
-
-  const handleClick = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
-  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -107,7 +77,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign Up
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -116,8 +86,8 @@ export default function SignIn() {
               label="Email Address"
               name="email"
               autoComplete="email"
-              value={signupData.email}
-              onChange={handleChange}
+              value={email}
+              onChange={(e)=>{setEmail(e.target.value)}}
 
               autoFocus
             />
@@ -129,8 +99,8 @@ export default function SignIn() {
               label="Username"
               name="username"
               autoComplete="username"
-              value={signupData.username}
-              onChange={handleChange}
+              value={username}
+              onChange={(e)=>{setUsername(e.target.value)}}
               // autoFocus
             />
             <TextField
@@ -142,8 +112,8 @@ export default function SignIn() {
               type="password"
               id="password"
               autoComplete="current-password"
-              value={signupData.password}
-              onChange={handleChange}
+              value={password}
+              onChange={(e)=>{setPassword(e.target.value)}}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -154,16 +124,21 @@ export default function SignIn() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
-              onClick={handleClick}
+              onClick={handleSubmit}
+              disabled={isLoading}
             >
-              Sign In
+              {isLoading ? <CircularProgress color="inherit" size="24px" /> : "Sign In"}
             </Button>
-            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-              {!err && <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
-                Error!
-              </Alert>}
-            </Snackbar>
-            {/* <Alert severity="success">This is a success message!</Alert> */}
+            
+            {error&&<div className='error' style={{
+              border:'1px solid red',
+              borderRadius:'5px',
+              padding:'1px 5px 1px 5px',
+              color:'red',
+              backgroundColor:'#ffe0e0',
+              margin:'5px 0px 10px 0px'
+            }}>{error}</div>}
+            
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">

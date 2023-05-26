@@ -7,6 +7,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { useLogout } from "../../hooks/useLogout";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -18,8 +20,15 @@ export default function Topbar(props) {
     // When rendering topbar I have to check if the user is logged in or not.
 
     const {user:currentUser} = useContext(AuthContext);
+    const {logout} = useLogout();
+    const navigate = useNavigate();
 
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+    const handleLogout = ()=>{
+        logout()
+        navigate('/login')
+    }
     
   return (
     <>
@@ -55,6 +64,9 @@ export default function Topbar(props) {
             <div className="topbar-right">
                  <div className="dark-white-toggle">
                     <ToggleOffOutlined className='toggle-icon' />
+                </div>
+                <div className="logout">
+                    <button onClick={handleLogout}>Logout</button>
                 </div>
                 <div className="image-container">
                     <a href={'/profile/'+currentUser.username}> <img className='image' src={currentUser.profilePicture?PF+currentUser.profilePicture:PF+"person/noAvatar.png"} alt="" /> </a>
