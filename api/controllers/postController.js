@@ -1,3 +1,4 @@
+const { json } = require("express");
 const Post = require("../models/Post");
 const User = require("../models/User");
 
@@ -108,6 +109,34 @@ const getUserPosts = async (req, res) => {
   }
 };
 
+
+// comment's on a post
+const createComment = async(req, res)=>{
+  try{
+    console.log(req.body)
+    console.log(req.params)
+    const username = req.body.username;
+      const comment = req.body.comment;
+    const postId = req.params.postId;
+    const data = {
+      comment:comment,
+      username:username,
+    }
+    const post = await Post.findById(postId);
+    if(!post)
+    {
+      throw Error('Post data not correct');
+    }
+    await post.updateOne({$push : {comments: data}})
+    res.status(200).json("Comment has been added by user")
+
+  }catch(err)
+  {
+    console.log(err)
+    res.status(401).json(err);
+  }
+}
+
 module.exports = {
   createPostHandler,
   updatePostHandler,
@@ -116,4 +145,5 @@ module.exports = {
   getPost,
   getTimeline,
   getUserPosts,
+  createComment,
 };

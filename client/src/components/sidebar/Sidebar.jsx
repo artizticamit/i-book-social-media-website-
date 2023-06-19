@@ -2,9 +2,12 @@ import "./sidebar.css"
 import {Home, Explore, Star, LocalFireDepartment, Group} from "@mui/icons-material"
 import {Users} from "../../dummyData"
 import CloseFriend from "../closeFriend/CloseFriend"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom'
 import {Link} from "react-router-dom"
+import { AuthContext } from "../../context/AuthContext"
+import { useContext } from "react"
+import axios from 'axios'
 
 
 export default function Sidebar() {
@@ -14,6 +17,29 @@ export default function Sidebar() {
     color: "inherit"
 
   }
+
+  const {user:currentUser, dispatch} = useContext(AuthContext);
+
+  const [friends, setFriends] = useState([]);
+
+  useEffect(()=>{
+
+    const fetchFriends =async()=>{
+      if(currentUser)
+      {
+
+        const res = await axios.get("http://localhost:8000/api/user/friends/" + currentUser._id);
+        console.log(res)
+        setFriends(res.data)
+      }
+      else{
+        setFriends([]);
+      }
+
+    }
+    fetchFriends();
+    
+  },[currentUser])
 
 
   return (
@@ -50,30 +76,12 @@ export default function Sidebar() {
               Group
             </span>
           </li>
-          <li className="sidebar-list-item">
-            <Group className="sidebar-list-icon"/>
-            <span className="sidebar-list-item-text">
-              Group
-            </span>
-          </li>
-          <li className="sidebar-list-item">
-            <Group className="sidebar-list-icon"/>
-            <span className="sidebar-list-item-text">
-              Group
-            </span>
-          </li>
-          <li className="sidebar-list-item">
-            <Group className="sidebar-list-icon"/>
-            <span className="sidebar-list-item-text">
-              Group
-            </span>
-          </li>
         </ul>
-        <button className="sidebar-show-more-btn">Show More</button>
+        {/* <button className="sidebar-show-more-btn">Show More</button> */}
         <hr className="sidebar-hr" />
         <ul className="sidebar-friend-list">
-          {Users.map((u)=>(
-            <CloseFriend key={u.id} user={u} />
+          {friends.map((u)=>(
+            <CloseFriend key={u._id} user={u} />
           ))}
           
         </ul>

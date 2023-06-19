@@ -20,7 +20,7 @@ export const useLogin = ()=>{
             console.log(user)
             setIsLoading(false);
             setError(false);
-            localStorage.setItem('user',JSON.stringify(res.data))
+            localStorage.setItem('user',JSON.stringify(user))
             dispatch({type:"LOGIN_SUCCESS",payload:res.data});
 
         }catch(err){

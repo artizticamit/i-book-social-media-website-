@@ -132,3 +132,72 @@
   .dropdown-item:hover {
     background-color: #9fc3f870;
   }
+
+  .comment-wrapper{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  .comment-container{
+    display: flex;
+    /* flex-direction: column; */
+    position: relative;
+    /* left: 0; */
+    /* align-items: center; */
+    /* margin-top: 10px; */
+    /* padding-left: 5px; */
+    border: 1px solid red;
+    padding:5px;
+    border-radius: 8px;
+    /* justify-content: center; */
+    align-items: center;
+  }
+
+  .comment-container2{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+  }
+  
+  .commenter-profilePic{
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 1px solid black;
+    margin-right: 10px;
+  }
+  .comment-username{
+    color:red;
+    margin-right: 10px;
+    font-size: small;
+  }
+
+  .comment-handler-container{
+    display: flex;
+    align-items: center;
+  }
+
+  .comment-input{
+    border-radius: 10px;
+    margin: 5px 0px 10px 0;
+    padding: 10px 5px;
+    outline: none;
+    width: 100%;
+  }
+
+  .comment-btn-submit{
+    position: relative;
+    margin: 5px 0px 10px 0;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin-left: 2px;
+    cursor: pointer;
+    transition: 0.15s all;
+  }
+
+  .comment-btn-submit:active{
+    scale:0.8;
+  }

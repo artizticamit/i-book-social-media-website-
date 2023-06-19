@@ -1,6 +1,11 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const validator = require('validator')
+const jwt = require('jsonwebtoken')
+
+const createToken = (_id)=>{
+  return jwt.sign({_id}, process.env.SECRET_KEY, {expiresIn:'1d'})
+}
 
 const handleRegister = async (req, res) => {
   try {
@@ -51,6 +56,8 @@ const handleLogin = async (req, res) => {
     if (!validated) {
       throw Error('Wrong Passsword');
     }
+
+    const token = createToken(user._id);
 
     res.status(200).json(user)
 

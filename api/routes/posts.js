@@ -29,4 +29,8 @@ router.get("/timeline/:userId", postMethod.getTimeline);
 
 router.get("/profile/:username", postMethod.getUserPosts)
 
+// a user commenting on a post
+
+router.put("/comment/:postId", postMethod.createComment)
+
 module.exports = router;

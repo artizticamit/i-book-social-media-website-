@@ -9,6 +9,7 @@ import {format} from "timeago.js"
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
+import Comments from '../comments/Comments'
 
 
 
@@ -31,10 +32,15 @@ export default function ({post}) {
   const [showmenu, setShowmenu] = useState(false);
   const [selectedvalue, setSelectedvalue] = useState(null);
 
+  const [showComments, setShowComments] = useState(false);
+  const [commentData, setCommentData] = useState("");
+
   const {user:currentUser} = useContext(AuthContext);
 
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
+
+  // this os for fetching userdetails
   useEffect(()=>{
     const fetchUsers = async ()=>{
       const response = await axios.get(`http://localhost:8000/api/user?userId=${post.userId}`)
@@ -47,11 +53,12 @@ export default function ({post}) {
   }, [post.userId])
 
 
-  const likeHandler = ()=>{
+  // this like handler
+  const likeHandler = async()=>{
     // first we have to fetch the post and check if the current user have liked the post or not and handle tha case.
 
     try{
-      axios.put("http://localhost:8000/api/posts/"+post._id+"/like", {userId: currentUser._id})
+      await axios.put("http://localhost:8000/api/posts/"+post._id+"/like", {userId: currentUser._id})
     }
     catch(err){
       console.log(err)
@@ -61,21 +68,44 @@ export default function ({post}) {
     setIsLiked(isLiked? false : true);
   }
 
+  
+  // this is for checking the like status and setting iit accordingly
   useEffect(()=>{
     setIsLiked(post.likes.includes(currentUser._id))
 
   },[currentUser._id, post.likes])
 
+  // this handles the menu
   const handlePostClick = ()=>{
     setShowmenu(!showmenu)
   }
 
+  // this handles the items value
   const handleItemClick = (option)=>{
     setSelectedvalue(option);
     setShowmenu(!showmenu)
     console.log(selectedvalue.value)
   }
 
+
+  // this is use for shwowing comments on clicking .
+  const handleShowComments = ()=>{
+    setShowComments(!showComments)
+  }
+
+  // comment giving it to backend.
+  const handleComment = async()=>{
+    try{
+      if(post._id && currentUser)
+      {
+        const res = await axios.put('http://localhost:8000/api/posts/comment/'+post._id, {username:currentUser.username, comment:commentData})
+        console.log(res);
+      }
+    }catch(err)
+    {
+      console.log(err);
+    }
+  }
   
   return (
     <div className="post-container">
@@ -111,10 +141,21 @@ export default function ({post}) {
                 <span className="post-likes-counter">{like} people like this.</span>
               </div>
             </div>
-            <div className="post-bottom-right">
-             {post.comment} comments
+            <div className="post-bottom-right" onClick={handleShowComments}>
+              comments
             </div>
           </div>
+          {
+            showComments && <div className="comment-wrapper">
+            <div className="comment-handler-container">
+              <input type="text" className="comment-input" value={commentData} onChange={(e)=>{setCommentData(e.target.value)}} placeholder="Write Comment"/>
+              <button className="comment-btn-submit" onClick={handleComment}>Post</button>
+            </div>
+              {post.comments.map((comment)=>(
+                    <Comments comment={comment} key={comment.username+ comment.comment}/>
+                  ))}
+          </div>
+          }
         </div>
     </div>
   )
