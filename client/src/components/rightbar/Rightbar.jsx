@@ -24,19 +24,25 @@ export default function Rightbar({ user, username }) {
 
   useEffect(() => {
     const getUser = async () => {
-      const res = await axios.get('http://localhost:8000/api/user?username=' + username);
-      console.log("getuser ka data= ", res.data)
-      setUserData(res.data);
+      if(username)
+      {
+        const res = await axios.get('http://localhost:8000/api/user?username=' + username);
+        // console.log("getuser ka data= ", res.data)
+        setUserData(res.data);
+      }
     }
     getUser();
-  }, [])
+  }, [username])
 
   useEffect(() => {
     const getFriends = async () => {
       try {
-        const res = await axios.get("http://localhost:8000/api/user/friends/" + userData._id)
-        setFriends(res.data)
-        console.log("username jiska hai uske friends ka data = ", res.data)
+        if(userData)
+        {
+          const res = await axios.get("http://localhost:8000/api/user/friends/" + userData._id)
+          setFriends(res.data)
+          // console.log("username jiska hai uske friends ka data = ", res.data)
+        }
 
       } catch (err) {
         console.log(err)
@@ -52,8 +58,8 @@ export default function Rightbar({ user, username }) {
     console.log(currentUser.followings.includes(userData._id))
   }, [currentUser, userData._id])
 
-  console.log("user profile = ", currentUser)
-  console.log("jiska profile ham dekh rahe hai = ", username)
+  // console.log("user profile = ", currentUser)
+  // console.log("jiska profile ham dekh rahe hai = ", username)
 
   const handleFollow = async (e) => {
 

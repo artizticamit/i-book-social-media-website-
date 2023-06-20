@@ -15,7 +15,7 @@ export default function Feed(props) {
   const [posts, setPosts] = React.useState([]); 
   
   const {user} = useContext(AuthContext);
-  console.log('feed mai user ka data = ', user)
+  // console.log('feed mai user ka data = ', user)
 
 
   useEffect(()=>{
@@ -26,7 +26,7 @@ export default function Feed(props) {
       ? await axios.get("http://localhost:8000/api/posts/profile/"+props.username)
       : await axios.get(`http://localhost:8000/api/posts/timeline/${user._id}`)
       
-      console.log(res);
+      // console.log(res);
       setPosts(res.data.sort((p1, p2)=>{
         return new Date(p2.createdAt) - new Date(p1.createdAt)
       }));
@@ -34,7 +34,7 @@ export default function Feed(props) {
       // console.log(res);
     }
     fetchPosts();
-    console.log("feed = ",posts)
+    // console.log("feed = ",posts)
   }, [props.username, user._id])
 
   return (

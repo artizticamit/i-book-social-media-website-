@@ -38,8 +38,12 @@
     display: flex;
     align-items: center;
     /* justify-content: center; */
-    margin: 5px 0;
-    margin-bottom: 20px;
+    padding: 10px 0 10px 0;
+    cursor: pointer;
+}
+
+.sidebar-list-item:hover{
+    background-color: rgb(198, 193, 193);
 }
 
 .sidebarWrapper

@@ -1,7 +1,7 @@
 import "./post.css"
 import {MoreVert} from "@mui/icons-material"
 import {Users} from "../../dummyData"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from "axios";
@@ -18,12 +18,18 @@ export default function ({post}) {
   // const user = Users.filter((u)=> u.id === post.userId );
   // if(user.length>0)console.log(user[0].username);
   // user.map((u)=> console.log(u));
+  const options1 = [
+    {value:"delete", label:"delete"},
+    {value:"edit", label:"edit"},
+    {value:"save", label:"save"},
+   ]
 
-  const options = [
-   {value:"delete", label:"delete"},
-   {value:"edit", label:"edit"},
-   {value:"save", label:"save"},
-  ]
+   const options2= [
+    {value:"save", label:"save"},
+   ]
+
+  const [options, setOptions] = useState(options2);
+  // setOptions(options2);
 
 
   const [like, setLike] = useState(post.likes.length);
@@ -39,14 +45,15 @@ export default function ({post}) {
 
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
+  const postRef = useRef(null);
+
 
   // this os for fetching userdetails
   useEffect(()=>{
     const fetchUsers = async ()=>{
       const response = await axios.get(`http://localhost:8000/api/user?userId=${post.userId}`)
       setUser(response.data)
-      // console.log(response)
-      
+      // console.log(response)      
     }
     fetchUsers();
     // console.log("post =",user)
@@ -80,12 +87,18 @@ export default function ({post}) {
     setShowmenu(!showmenu)
   }
 
-  // this handles the items value
-  const handleItemClick = (option)=>{
-    setSelectedvalue(option);
-    setShowmenu(!showmenu)
-    console.log(selectedvalue.value)
-  }
+  // Option item click handler
+  const handleItemClick = (option) => {
+    if (option.value === "delete") {
+      // Handle delete option
+    } else if (option.value === "edit") {
+      // Handle edit option
+    } else if (option.value === "save") {
+      // Handle save option
+    }
+    console.log(option.value);
+    setShowmenu(!showmenu);
+  };
 
 
   // this is use for shwowing comments on clicking .
@@ -99,17 +112,45 @@ export default function ({post}) {
       if(post._id && currentUser)
       {
         const res = await axios.put('http://localhost:8000/api/posts/comment/'+post._id, {username:currentUser.username, comment:commentData})
-        console.log(res);
+        // console.log(res);
       }
     }catch(err)
     {
       console.log(err);
     }
   }
+
+  useEffect(() => {
+    // Set options based on user role
+    if (user && currentUser && user._id === currentUser._id) {
+      setOptions([
+        { value: "delete", label: "Delete" },
+        { value: "edit", label: "Edit" },
+        { value: "save", label: "Save" },
+      ]);
+    } else {
+      setOptions([{ value: "save", label: "Save" }]);
+    }
+  }, [currentUser, user]);
+
+  useEffect(() => {
+    // Close menu when clicking outside of it
+    const handleClickOutside = (event) => {
+      if (postRef.current && !postRef.current.contains(event.target)) {
+        setShowmenu(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
   
   return (
     <div className="post-container">
-        <div className="post-wrapper">
+        <div className="post-wrapper" ref={postRef}>
           <div className="post-top">
             <div className="post-top-left">
             <a href={`/profile/${user.username}`} style={{textDecoration:"none", color:"black", display:"flex", alignItems:"center"}}>

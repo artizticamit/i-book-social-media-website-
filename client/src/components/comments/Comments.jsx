@@ -26,7 +26,7 @@ export default function Comments({comment}) {
   return (
     <>
     <div className="comment-container">
-      <img className="commenter-profilePic" src={PF+commenter.profilePicture} alt="" />
+      <img className="commenter-profilePic" src={commenter.profilePicture ? PF+commenter.profilePicture: PF+"person/noAvatar.png"} alt="" />
       <div className="comment-container2">
           <div className="comment-username">{comment.username}</div>
           <div className="comment-desc">{comment.comment}</div>

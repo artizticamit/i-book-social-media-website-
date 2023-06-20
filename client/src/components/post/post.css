@@ -96,6 +96,11 @@
     width: 24px;
     height: 24px;
     cursor: pointer;
+    transition: 0.25s all;
+}
+
+.post-like-icon:hover{
+  scale:1.2;
 }
 
 .post-likes-counter
