@@ -13,7 +13,7 @@ import Comments from '../comments/Comments'
 
 
 
-export default function ({post}) {
+export default function ({post, handleDeletePost}) {
   // console.log(post)
   // const user = Users.filter((u)=> u.id === post.userId );
   // if(user.length>0)console.log(user[0].username);
@@ -31,6 +31,7 @@ export default function ({post}) {
   const [options, setOptions] = useState(options2);
   // setOptions(options2);
 
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
@@ -42,8 +43,8 @@ export default function ({post}) {
   const [commentData, setCommentData] = useState("");
 
   const {user:currentUser} = useContext(AuthContext);
-
-  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const [isDeleted, setIsDeleted] = useState(false);
+  const [comments, setComments] = useState(post.comments || []);
 
   const postRef = useRef(null);
 
@@ -91,6 +92,7 @@ export default function ({post}) {
   const handleItemClick = (option) => {
     if (option.value === "delete") {
       // Handle delete option
+      handlePostDelete();
     } else if (option.value === "edit") {
       // Handle edit option
     } else if (option.value === "save") {
@@ -99,6 +101,11 @@ export default function ({post}) {
     console.log(option.value);
     setShowmenu(!showmenu);
   };
+
+  // useEffect(()=>{
+  //     setComments(post.comments);
+  //     console.log("comments = ", comments)
+  // },[post])
 
 
   // this is use for shwowing comments on clicking .
@@ -111,8 +118,14 @@ export default function ({post}) {
     try{
       if(post._id && currentUser)
       {
-        const res = await axios.put('http://localhost:8000/api/posts/comment/'+post._id, {username:currentUser.username, comment:commentData})
-        // console.log(res);
+        if(commentData!=="")
+        {
+
+          const res = await axios.put('http://localhost:8000/api/posts/comment/'+post._id, {username:currentUser.username, comment:commentData})
+          // console.log(res);
+          setComments([...comments,res.data]);
+          setCommentData("");
+        }
       }
     }catch(err)
     {
@@ -138,6 +151,7 @@ export default function ({post}) {
     const handleClickOutside = (event) => {
       if (postRef.current && !postRef.current.contains(event.target)) {
         setShowmenu(false);
+        setShowComments(false);
       }
     };
 
@@ -147,6 +161,32 @@ export default function ({post}) {
       document.removeEventListener('click', handleClickOutside);
     };
   }, []);
+
+  const handlePostDelete =async ()=>{
+    const confirmDelete = window.confirm("Are you sure you want to delete this post?")
+
+    if(confirmDelete)
+    {
+
+      try{
+        if(currentUser._id==post.userId)
+        {
+          const res = await axios.delete(`http://localhost:8000/api/posts/${post._id}?userId=${currentUser._id}`)
+          setIsDeleted(true);
+          handleDeletePost(post._id);
+          console.log(res.data);
+        }
+        
+      }catch(err){
+        console.log(err);
+      }
+    }
+  }
+
+  if(isDeleted)
+  {
+    return null;
+  }
   
   return (
     <div className="post-container">
@@ -154,7 +194,7 @@ export default function ({post}) {
           <div className="post-top">
             <div className="post-top-left">
             <a href={`/profile/${user.username}`} style={{textDecoration:"none", color:"black", display:"flex", alignItems:"center"}}>
-              <img src={user.profilePicture?PF+user.profilePicture:PF+"person/noAvatar.png"} alt="" className="post-profile-pic" />
+              <img src={user.profilePicture?PF+user.profilePicture:PF+"person/noAvatar.png"} alt="" className="post-profile-pic" loading="lazy" />
               <span className="post-username">{user.username}</span>
             </a>
               <span className="post-timelapse" >{format(post.createdAt)}</span>
@@ -189,10 +229,10 @@ export default function ({post}) {
           {
             showComments && <div className="comment-wrapper">
             <div className="comment-handler-container">
-              <input type="text" className="comment-input" value={commentData} onChange={(e)=>{setCommentData(e.target.value)}} placeholder="Write Comment"/>
+              <input type="text" className="comment-input" autoFocus value={commentData} onChange={(e)=>{setCommentData(e.target.value)}} placeholder="Write Comment"/>
               <button className="comment-btn-submit" onClick={handleComment}>Post</button>
             </div>
-              {post.comments.map((comment)=>(
+              {comments.map((comment)=>(
                     <Comments comment={comment} key={comment.username+ comment.comment}/>
                   ))}
           </div>

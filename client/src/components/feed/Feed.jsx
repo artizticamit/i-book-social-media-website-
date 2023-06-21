@@ -17,6 +17,10 @@ export default function Feed(props) {
   const {user} = useContext(AuthContext);
   // console.log('feed mai user ka data = ', user)
 
+  const handleDeletePost = (postId)=>{
+    setPosts(posts.filter((post)=>post._id!==postId))
+  }
+
 
   useEffect(()=>{
     // setUserid(props.userid);
@@ -43,7 +47,7 @@ export default function Feed(props) {
         {(!props.username || user.username===props.username) && <Share />}
         {/* <div>Total posts = {posts.length}</div> */}
         {posts && posts.map((p)=>(
-          <Post key={p._id} post={p}/>
+          <Post key={p._id} post={p} handleDeletePost={handleDeletePost}/>
         ))}
         
       </div>

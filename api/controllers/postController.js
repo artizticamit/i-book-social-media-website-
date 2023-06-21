@@ -34,12 +34,15 @@ const updatePostHandler = async (req, res) => {
 const deletePostHandler = async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
-    if (post.userId === req.body.userId) {
-      await post.deleteOne({ $set: req.body });
+    console.log(post);
+    console.log(req.query);
+    if (post.userId.toString() === req.query.userId) {
+      await post.deleteOne({ $set: req.query });
       res.status(200).json("the post has been deleted");
     } else {
       res.status(403).json("You can delete only your post");
     }
+    // res.status(200).json('ok delete');
   } catch (err) {
     res.status(500).json(err);
   }
@@ -116,7 +119,7 @@ const createComment = async(req, res)=>{
     console.log(req.body)
     console.log(req.params)
     const username = req.body.username;
-      const comment = req.body.comment;
+    const comment = req.body.comment;
     const postId = req.params.postId;
     const data = {
       comment:comment,
@@ -128,7 +131,7 @@ const createComment = async(req, res)=>{
       throw Error('Post data not correct');
     }
     await post.updateOne({$push : {comments: data}})
-    res.status(200).json("Comment has been added by user")
+    res.status(200).json({comment:comment, username:username})
 
   }catch(err)
   {
