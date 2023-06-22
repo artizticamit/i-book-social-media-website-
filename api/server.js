@@ -13,6 +13,7 @@ const path = require("path");
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
 const postRoute = require("./routes/posts");
+const groupRoute = require("./routes/group")
 
 const app = express();
 
@@ -35,6 +36,7 @@ app.use(morgan("common"));
 app.use("/api/user", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/posts", postRoute);
+app.use("/api/group", groupRoute)
 
 
 app.use(

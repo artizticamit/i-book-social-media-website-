@@ -9,6 +9,8 @@ import Temp from "./components/temp/Temp"
 // import { LoginContext } from "./pages/contexts/LoginContext.jsx";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
+import SavedPosts from "./pages/savedposts/SavedPosts";
+import Group from "./pages/group/Group";
 
 
 
@@ -36,6 +38,8 @@ function App() {
           user?<Navigate to={'/'}/>:<Login />
           }/>
           <Route exact path='/profile/:username' element={<Profile />}/>
+          <Route exact path='/savedPosts/:userId' element={<SavedPosts />}/>
+          <Route exact path='/group' element={<Group/>}/>
           <Route exact path='/temp/:username' element={<Temp user={user} />}/>
         </Routes>
       </Router>

@@ -1,6 +1,7 @@
 const { json } = require("express");
 const Post = require("../models/Post");
 const User = require("../models/User");
+const { default: mongoose } = require("mongoose");
 
 // Create a post
 const createPostHandler = async (req, res) => {
@@ -140,6 +141,82 @@ const createComment = async(req, res)=>{
   }
 }
 
+
+// save and unsave a post , savepost handler
+const savePost = async(req, res)=>{
+  const postId = req.params.postId
+  const userId = req.body.userId;
+  try{
+    const user = await User.findById(userId);
+    const check = user.savedPosts.includes(postId)
+    if(!check)
+    {
+      await User.findByIdAndUpdate(userId,{$push:{savedPosts:postId}});
+      res.status(200).json("Post has been saved");
+    }else{
+      // await User.findByIdAndUpdate(userId, {$pull:{savedPosts:postId}})
+      res.status(200).json("Post is already saved")
+    }
+  }catch(err)
+  {
+    res.status(500).json(err);
+  }
+}
+
+// unsave a post
+const unsavePost = async (req, res)=>{
+  const postId = req.params.postId
+  const userId = req.body.userId;
+  try{
+    const user = await User.findById(userId);
+    const check = user.savedPosts.includes(postId)
+    if(check)
+    {
+      await User.findByIdAndUpdate(userId,{$pull:{savedPosts:postId}});
+      res.status(200).json("Post has been unsaved successfully");
+    }else{
+      // await User.findByIdAndUpdate(userId, {$pull:{savedPosts:postId}})
+      res.status(200).json("Post is already Unsaved")
+    }
+  }catch(err)
+  {
+    res.status(500).json(err);
+  }
+}
+
+
+
+const getsavedposts = async(req, res)=>{
+  try {
+    const currentUser = await User.findById(req.params.userId);
+    const savedPostIds = currentUser.savedPosts.map(postId=>mongoose.Types.ObjectId(postId)) // converting the savedPostids string value to ObjectId value
+    const savedposts = await Post.find({_id:{$in:savedPostIds}})
+    res.status(200).json(savedposts)
+
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
+const isSaved = async(req, res)=>{
+  try{
+    const postId = req.params.postId;
+    const userId  =req.params.userId;
+
+    const user = await User.findById(userId);
+    if(user.savedPosts.includes(postId))
+    {
+      res.status(200).json(true)
+    }
+    else{
+      res.status(200).json(false);
+    }
+  }catch(err)
+  {
+    res.status(500).json(err);
+  }
+}
+
 module.exports = {
   createPostHandler,
   updatePostHandler,
@@ -149,4 +226,8 @@ module.exports = {
   getTimeline,
   getUserPosts,
   createComment,
+  savePost,
+  unsavePost,
+  getsavedposts,
+  isSaved,
 };

@@ -55,6 +55,10 @@ const UserSchema = new mongoose.Schema({
     relationship:{
         type: Number,
         enum: [1, 2, 3]
+    },
+    savedPosts:{
+        type:Array,
+        default:[]
     }
 },
 {timestamps: true}

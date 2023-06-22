@@ -1,7 +1,7 @@
 import Post from "../post/Post"
 import Share from "../share/Share"
 import "./feed.css"
-import {Posts} from "../../dummyData"
+// import {Posts} from "../../dummyData"
 import React from "react";
 import ReactDOM from 'react-dom'
 
@@ -12,7 +12,7 @@ import { AuthContext } from "../../context/AuthContext"
 
 export default function Feed(props) {
 
-  const [posts, setPosts] = React.useState([]); 
+  const [posts, setPosts] = useState([]); 
   
   const {user} = useContext(AuthContext);
   // console.log('feed mai user ka data = ', user)

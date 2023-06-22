@@ -45,8 +45,27 @@ export default function ({post, handleDeletePost}) {
   const {user:currentUser} = useContext(AuthContext);
   const [isDeleted, setIsDeleted] = useState(false);
   const [comments, setComments] = useState(post.comments || []);
+  const [isSaved, setIsSaved] = useState(currentUser&&post&& currentUser.savedPosts.includes(post._id));
 
   const postRef = useRef(null);
+
+
+  // for checking if the current post is inside the saved lists of post of the current user
+  // Check if the post is saved or not on component load
+  useEffect(() => {
+    const checkPostSaved = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8000/api/posts/${post._id}/issaved/${currentUser._id}`
+        );
+        setIsSaved(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    checkPostSaved();
+  }, [post._id, currentUser._id]);
 
 
   // this os for fetching userdetails
@@ -95,8 +114,10 @@ export default function ({post, handleDeletePost}) {
       handlePostDelete();
     } else if (option.value === "edit") {
       // Handle edit option
-    } else if (option.value === "save") {
+    } else if (option.value === "save" || option.value==="unsave") {
       // Handle save option
+      handleSavePost();
+      setIsSaved(!isSaved);
     }
     console.log(option.value);
     setShowmenu(!showmenu);
@@ -135,16 +156,20 @@ export default function ({post, handleDeletePost}) {
 
   useEffect(() => {
     // Set options based on user role
+    const updatedOptions = []
     if (user && currentUser && user._id === currentUser._id) {
-      setOptions([
-        { value: "delete", label: "Delete" },
-        { value: "edit", label: "Edit" },
-        { value: "save", label: "Save" },
-      ]);
-    } else {
-      setOptions([{ value: "save", label: "Save" }]);
+      updatedOptions.push({value:"delete",label:"Delete"})
+      updatedOptions.push({value:"edit",label:"Edit"})
     }
-  }, [currentUser, user]);
+    if(isSaved)
+    {
+      updatedOptions.push({value:"unsave",label:"Unsave"})
+    }
+    else{
+      updatedOptions.push({value:"save",label:"Save"})  
+    }
+    setOptions(updatedOptions)
+  }, [currentUser, user, isSaved]);
 
   useEffect(() => {
     // Close menu when clicking outside of it
@@ -167,7 +192,6 @@ export default function ({post, handleDeletePost}) {
 
     if(confirmDelete)
     {
-
       try{
         if(currentUser._id==post.userId)
         {
@@ -186,6 +210,35 @@ export default function ({post, handleDeletePost}) {
   if(isDeleted)
   {
     return null;
+  }
+
+
+  const handleSavePost = async()=>{
+    try{
+      if(currentUser && post)
+      {
+        let res;
+        if(isSaved)
+        {
+          //unsave the post
+          res = await axios.post(`http://localhost:8000/api/posts/${post._id}/unsave`, {userId:currentUser._id})
+          setIsSaved(false);
+        }
+        else{
+          //save the post
+          res = await axios.post(`http://localhost:8000/api/posts/${post._id}/save`, {userId:currentUser._id})
+          setIsSaved(true);
+        }
+        // const res = await axios.post('http://localhost:8000/api/posts/savepost/'+currentUser._id, {postId:post._id})
+        // handleSavedPost(post._id);
+        window.alert(res.data)
+        console.log(res.data)
+      }
+    }catch(err)
+    {
+      console.log(err.message);
+      window.alert(err.response.data)
+    }
   }
   
   return (

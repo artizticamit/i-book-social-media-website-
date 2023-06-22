@@ -46,6 +46,13 @@
     background-color: rgb(198, 193, 193);
 }
 
+.sidebar-list-item-link{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
 .sidebarWrapper
 {
     margin-left: 20px;

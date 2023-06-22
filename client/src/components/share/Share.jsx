@@ -22,7 +22,11 @@ export default function Share() {
 
     const submitHandle = async (e)=>{
         e.preventDefault();
-        // console.log(desc.current.value)
+       
+        if(desc.current.value=="")
+        {
+            return;
+        }
         const newPost = {
             userId : currentUser._id,
             desc : desc.current.value
@@ -48,6 +52,7 @@ export default function Share() {
         catch(err){
             console.log(err)
         }
+        desc.current.value=""
     }
 
   return (

@@ -47,10 +47,12 @@ export default function Sidebar() {
       <div className="sidebarWrapper">
         <ul className="sidebar-list">
           <li className="sidebar-list-item">
+          <Link style={style} to={'/'} className="sidebar-list-item-link">
             <Home className="sidebar-list-icon"/>
             <span className="sidebar-list-item-text">
-              <Link style={style} to={'/'}>Home</Link>
+              Home
             </span>
+            </Link>
           </li>
           <li className="sidebar-list-item">
             <Explore className="sidebar-list-icon"/>
@@ -71,10 +73,22 @@ export default function Sidebar() {
             </span>
           </li>
           <li className="sidebar-list-item">
+          <Link className="sidebar-list-item-link" to={`/savedposts/${currentUser?currentUser._id:'profile'}`}>
+
+            <LocalFireDepartment className="sidebar-list-icon"/>
+            <span className="sidebar-list-item-text">
+              Saved Posts
+            </span>
+          </Link>
+          </li>
+          <li className="sidebar-list-item">
+          <Link to={'/group'} className="sidebar-list-item-link">
+
             <Group className="sidebar-list-icon"/>
             <span className="sidebar-list-item-text">
               Group
             </span>
+          </Link>
           </li>
         </ul>
         {/* <button className="sidebar-show-more-btn">Show More</button> */}

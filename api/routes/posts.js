@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { response } = require("express");
+
 const postMethod = require("../controllers/postController");
 
 // Create a post
@@ -32,5 +32,18 @@ router.get("/profile/:username", postMethod.getUserPosts)
 // a user commenting on a post
 
 router.put("/comment/:postId", postMethod.createComment)
+
+
+// saving a post in the user database
+router.post("/:postId/save", postMethod.savePost)
+
+// unsave a post
+router.post("/:postId/unsave", postMethod.unsavePost)
+
+//getting all the users saved posts.
+router.get("/savedposts/:userId", postMethod.getsavedposts)
+
+// issaved
+router.get("/:postId/issaved/:userId",postMethod.isSaved)
 
 module.exports = router;

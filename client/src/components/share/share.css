@@ -118,3 +118,10 @@
     cursor: pointer;
 
 }
+
+@media only screen and (max-width:900px)
+{
+    .share-option-text{
+        display: none;
+    }
+}
