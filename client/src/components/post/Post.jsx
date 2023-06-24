@@ -56,7 +56,7 @@ export default function ({post, handleDeletePost}) {
     const checkPostSaved = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8000/api/posts/${post._id}/issaved/${currentUser._id}`
+          `http://192.168.1.7:8000/api/posts/${post._id}/issaved/${currentUser._id}`
         );
         setIsSaved(response.data);
       } catch (err) {
@@ -71,7 +71,7 @@ export default function ({post, handleDeletePost}) {
   // this os for fetching userdetails
   useEffect(()=>{
     const fetchUsers = async ()=>{
-      const response = await axios.get(`http://localhost:8000/api/user?userId=${post.userId}`)
+      const response = await axios.get(`http://192.168.1.7:8000/api/user?userId=${post.userId}`)
       setUser(response.data)
       // console.log(response)      
     }
@@ -85,7 +85,7 @@ export default function ({post, handleDeletePost}) {
     // first we have to fetch the post and check if the current user have liked the post or not and handle tha case.
 
     try{
-      await axios.put("http://localhost:8000/api/posts/"+post._id+"/like", {userId: currentUser._id})
+      await axios.put("http://192.168.1.7:8000/api/posts/"+post._id+"/like", {userId: currentUser._id})
     }
     catch(err){
       console.log(err)
@@ -142,7 +142,7 @@ export default function ({post, handleDeletePost}) {
         if(commentData!=="")
         {
 
-          const res = await axios.put('http://localhost:8000/api/posts/comment/'+post._id, {username:currentUser.username, comment:commentData})
+          const res = await axios.put('http://192.168.1.7:8000/api/posts/comment/'+post._id, {username:currentUser.username, comment:commentData})
           // console.log(res);
           setComments([...comments,res.data]);
           setCommentData("");
@@ -195,7 +195,7 @@ export default function ({post, handleDeletePost}) {
       try{
         if(currentUser._id==post.userId)
         {
-          const res = await axios.delete(`http://localhost:8000/api/posts/${post._id}?userId=${currentUser._id}`)
+          const res = await axios.delete(`http://192.168.1.7:8000/api/posts/${post._id}?userId=${currentUser._id}`)
           setIsDeleted(true);
           handleDeletePost(post._id);
           console.log(res.data);
@@ -221,12 +221,12 @@ export default function ({post, handleDeletePost}) {
         if(isSaved)
         {
           //unsave the post
-          res = await axios.post(`http://localhost:8000/api/posts/${post._id}/unsave`, {userId:currentUser._id})
+          res = await axios.post(`http://192.168.1.7:8000/api/posts/${post._id}/unsave`, {userId:currentUser._id})
           setIsSaved(false);
         }
         else{
           //save the post
-          res = await axios.post(`http://localhost:8000/api/posts/${post._id}/save`, {userId:currentUser._id})
+          res = await axios.post(`http://192.168.1.7:8000/api/posts/${post._id}/save`, {userId:currentUser._id})
           setIsSaved(true);
         }
         // const res = await axios.post('http://localhost:8000/api/posts/savepost/'+currentUser._id, {postId:post._id})

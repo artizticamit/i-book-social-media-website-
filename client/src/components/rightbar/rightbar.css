@@ -174,3 +174,9 @@
 .righbar-follow-btn:focus{
     outline:none;
 }
+
+@media only screen and (max-width:420px) {
+    .rightbar-container{
+        display: none;
+    }
+}

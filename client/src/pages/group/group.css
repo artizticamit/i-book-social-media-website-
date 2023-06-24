@@ -1,0 +1,77 @@
+.group-container{
+    display: flex;
+}
+
+.group-page{
+    flex:8;
+}
+
+.group-card-wrapper
+{
+    display: flex;
+    /* align-items: center; */
+    flex-direction: column;
+}
+
+.group-create{
+    position: relative;
+    /* margin-left: auto; */
+    padding: 20px;
+    cursor:pointer;
+    border: 1px solid black;
+    transition: 0.25s all;
+}
+
+
+.group-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* Group create form   */
+/* .group-create-form{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+} */
+
+.group-create-form{
+    z-index: 1;
+}
+
+.group-create-form,.overlay{
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    /* z-index: 1; */
+}
+
+.overlay{
+    background: rgba(49, 49, 49, 0.8);
+}
+
+.group-create-form-container{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1.4;
+    background: #f1f1f1;
+    padding: 14px 28px;
+    border-radius: 3px;
+    max-width: 600px;
+    min-width: 300px;
+}
+.overlay-close{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 7px;
+}

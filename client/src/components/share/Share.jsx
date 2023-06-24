@@ -23,7 +23,7 @@ export default function Share() {
     const submitHandle = async (e)=>{
         e.preventDefault();
        
-        if(desc.current.value=="")
+        if(desc.current.value=="" && !file)
         {
             return;
         }
@@ -40,13 +40,13 @@ export default function Share() {
             newPost.img = fileName;
             console.log(newPost)
             try{
-                await axios.post("http://localhost:8000/api/upload", data)
+                await axios.post("http://192.168.1.7:8000/api/upload", data)
 
             }catch(err){}
         }
 
         try{
-            await axios.post("http://localhost:8000/api/posts", newPost)
+            await axios.post("http://192.168.1.7:8000/api/posts", newPost)
             window.location.reload();
         }
         catch(err){

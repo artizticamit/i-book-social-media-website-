@@ -21,7 +21,7 @@ export default function Profile() {
   useEffect(()=>{
     const fetchUser = async ()=>{
       
-        const res = await axios.get(`http://localhost:8000/api/user?username=${username}`);
+        const res = await axios.get(`http://192.168.1.7:8000/api/user?username=${username}`);
         setUser(res.data);
         console.log("profile mai milne wala data= ",res.data);
     }
@@ -34,7 +34,7 @@ export default function Profile() {
 
   return (
     <>
-      {user.username && <Topbar user={user}/>}
+      {user.username && <Topbar/>}
       <div className="profile-container">
         <Sidebar />
         <div className="profile-right">

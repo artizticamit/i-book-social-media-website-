@@ -23,7 +23,7 @@ export default function Home() {
 
   useEffect(()=>{
     const fetchUsers = async ()=>{
-      const response = await axios.get(`http://localhost:8000/api/user?username=${user.username}`)
+      const response = await axios.get(`http://192.168.1.7:8000/api/user?username=${user.username}`)
       // setUser(response.data)
       console.log(response)
       

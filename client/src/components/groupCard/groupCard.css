@@ -1,0 +1,71 @@
+.group-card-container{
+    display: flex;
+    border: 1px solid black;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+
+.group-card-name{
+    padding: 10px;
+}
+
+.group-card-join{
+    padding: 10px;
+}
+
+
+.group-create:hover{
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.4);
+}
+
+.group-card-desc{
+    font-style: italic;
+    font-size: smaller;
+    opacity: 0.8;
+    margin-right: auto;
+}
+
+
+/* form prompt */
+
+.form-prompt {
+    position: relative;
+    width: 300px;
+    margin: 20px;
+  }
+  
+  .form-prompt-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    transition: all 0.2s ease;
+    opacity: 0.5;
+  }
+  
+  .form-prompt-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+  
+  .form-prompt-input:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+  
+  .form-prompt-label.active {
+    top: -12px;
+    left: 5px;
+    font-size: 12px;
+    opacity: 1;
+  }
+  
+  .form-prompt.active .form-prompt-input {
+    padding-top: 20px;
+  }

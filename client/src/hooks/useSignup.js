@@ -11,7 +11,7 @@ export const useSignup = ()=>{
         setIsLoading(true);
         setError(null)
         try{
-            const response = await axios.post('http://localhost:8000/api/auth/register', {email:email, username:username, password:password})
+            const response = await axios.post('http://192.168.1.7:8000/api/auth/register', {email:email, username:username, password:password})
             console.log(response.data);
             setIsLoading(false); 
             navigate('/login')

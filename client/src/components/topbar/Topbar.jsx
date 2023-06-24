@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 
 
-export default function Topbar(props) {
+export default function Topbar() {
     // const toggle = document.querySelector(".toggle-icon");
     // toggle.addEventListener("click", (e)=>{
     //     e.target.style.backgroundColor = "white";
@@ -33,7 +33,7 @@ export default function Topbar(props) {
   return (
     <>
         <div className="container">
-            <Link to="/" style={{textDecoration:"none"}}>
+            <Link to="/" style={{textDecoration:"none"}} className="icon-container-link-wrapper">
                 <div className="icon-container">
                     <span className="icon">I-Book</span>
                 </div>

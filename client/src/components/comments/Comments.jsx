@@ -16,7 +16,7 @@ export default function Comments({comment}) {
 
   useEffect(()=>{
     const fetchCommenter = async()=>{
-      const res = await axios.get('http://localhost:8000/api/user?username='+comment.username)
+      const res = await axios.get('http://192.168.1.7:8000/api/user?username='+comment.username)
       setCommenter(res.data);
       console.log(res);
     }

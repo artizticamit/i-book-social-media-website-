@@ -58,7 +58,14 @@ const UserSchema = new mongoose.Schema({
     },
     savedPosts:{
         type:Array,
-        default:[]
+        default:[],
+        max:50,
+        
+    },
+    groups:{
+        type:Array,
+        default:[],
+        max:20
     }
 },
 {timestamps: true}

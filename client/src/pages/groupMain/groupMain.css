@@ -1,0 +1,26 @@
+.groupmain-container{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.groupmain-header{
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.groupmain-body{
+    display: flex;
+}
+
+.groupmain-posts{
+    flex:8;
+    border: 1px solid red;
+    height: 100%;
+}
+
+.groupmain-members{
+    flex:2;
+}

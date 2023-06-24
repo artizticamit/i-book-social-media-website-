@@ -39,14 +39,14 @@ app.use("/api/posts", postRoute);
 app.use("/api/group", groupRoute)
 
 
-app.use(
-  cors({
-    origin: ["http://localhost:3000", "http://localhost:8000"],
-    methods: ["GET", "POST"],
-    credentials: true,
-    allowedHeaders: ['Content-Type', 'Authorization'],
-  })
-);
+// app.use(
+//   cors({
+//     origin: ["http://localhost:3000", "http://192.168.1.7:8000"],
+//     methods: ["GET", "POST","DELETE", "PUT"],
+//     credentials: true,
+//     allowedHeaders: ['Content-Type', 'Authorization'],
+//   })
+// );
 
 
 // I enabled the cors in the server.js file and it worked for me.
@@ -60,6 +60,7 @@ app.use((req, res, next)=>{
       cb(null, "public/images")
     },
     filename: (req, file, cb)=>{
+      console.log(req.body.name)
       cb(null, req.body.name)
     },
   })
@@ -68,6 +69,7 @@ app.use((req, res, next)=>{
   app.post("/api/upload", upload.single("file"), (req, res)=>{
     res.set("Access-Control-Allow-Origin", "*")
     try{
+      console.log("image uploaded successfully")
       return res.status(200).json("File uploaded successfully");
     }
     catch(err)

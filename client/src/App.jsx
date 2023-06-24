@@ -11,6 +11,7 @@ import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import SavedPosts from "./pages/savedposts/SavedPosts";
 import Group from "./pages/group/Group";
+import GroupMain from "./pages/groupMain/GroupMain";
 
 
 
@@ -40,6 +41,7 @@ function App() {
           <Route exact path='/profile/:username' element={<Profile />}/>
           <Route exact path='/savedPosts/:userId' element={<SavedPosts />}/>
           <Route exact path='/group' element={<Group/>}/>
+          <Route exact path='/group/:groupId' element={<GroupMain />}/>
           <Route exact path='/temp/:username' element={<Temp user={user} />}/>
         </Routes>
       </Router>

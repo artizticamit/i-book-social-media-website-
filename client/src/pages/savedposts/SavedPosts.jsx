@@ -3,6 +3,8 @@ import { AuthContext } from '../../context/AuthContext'
 import { useContext,useState,useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import Sidebar from '../../components/sidebar/Sidebar'
+import './savedposts.css'
 
 import Post from '../../components/post/Post'
 import axios from 'axios'
@@ -42,11 +44,13 @@ export default function SavedPosts() {
   return (
     <>
         <div>SavedPosts</div>
-        <div>
-
-        {posts && posts.map((post)=>{
-           return <Post key={post._id} post={post} handleDeletePost={handleDeletePost}/>
-        })}
+        <div className="savedposts-container">
+            <Sidebar />
+            <div>
+                {posts && posts.map((post)=>{
+                return <Post key={post._id} post={post} handleDeletePost={handleDeletePost}/>
+                })}
+            </div>
         </div>
     </>
   )
