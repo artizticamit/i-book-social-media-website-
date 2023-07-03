@@ -21,6 +21,44 @@
     height: 100%;
 }
 
-.groupmain-members{
-    flex:2;
+
+.groupmain-header-desc{
+    /* padding: 10px; */
+    padding-top: 20px;
+    margin-bottom: 20px;
+}
+
+.group-header-name-container{
+    margin: 10px;
+}
+.group-header-name{
+    font-size: 45px;
+}
+.group-header-groupId{
+    font-style: italic;
+    font-size: small;
+    color: gray;
+}
+
+.groupmain-header-join-container{
+    margin: 10px;
+}
+
+.groupmain-header-join-btn{
+    
+    padding: 10px;
+}
+
+.groupmain-members-container{
+    flex:3;
+    border: 1px solid red;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+}
+
+.groupmain-members-text{
+    border: 1px solid black;
+    display: inline-block;
+    width: 100%;
 }

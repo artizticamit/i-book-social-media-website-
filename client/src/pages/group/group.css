@@ -39,7 +39,7 @@
 } */
 
 .group-create-form{
-    z-index: 1;
+    z-index: 2;
 }
 
 .group-create-form,.overlay{
@@ -74,4 +74,36 @@
     top: 10px;
     right: 10px;
     padding: 5px 7px;
+}
+
+.group-search{
+    margin-left: auto;
+    padding: 10px;
+}
+
+.group-search-input{
+    /* outline: none; */
+    outline: blue;
+    padding: 10px;
+    width: 50px;
+    transition: 0.15s all;
+}
+
+.group-search-input:focus{
+    width: 200px;
+}
+
+.group-search-input:active{
+    outline: blue;
+}
+
+.group-search-btn{
+    padding: 10px;
+}
+.group-search-list-container{
+    padding-bottom: 10px;
+}
+
+.mg-t-30{
+    margin-top: 30px;
 }

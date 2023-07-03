@@ -42,6 +42,14 @@ const AuthReducer = (state, action)=>{
                 user:null,
                 isFetching:false,
                 error:false
+            };
+        case 'JOIN_GROUP':
+            return{
+                ...state,
+                user:{
+                    ...state.user,
+                    groups:[...state.user.groups, action.payload],
+                }
             }
         default:
             return state;

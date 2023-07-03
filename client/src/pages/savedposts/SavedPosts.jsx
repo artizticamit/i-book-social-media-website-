@@ -50,6 +50,9 @@ export default function SavedPosts() {
                 {posts && posts.map((post)=>{
                 return <Post key={post._id} post={post} handleDeletePost={handleDeletePost}/>
                 })}
+                {
+                    !posts && <div className="text">No saved posts</div>
+                }
             </div>
         </div>
     </>
