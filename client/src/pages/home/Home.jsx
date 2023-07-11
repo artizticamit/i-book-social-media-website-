@@ -15,6 +15,8 @@ import { AuthContext } from "../../context/AuthContext"
 
 export default function Home() {
 
+  const path = 'https://i-book-backend.onrender.com';
+
   const {state } = useLocation();
   // const [user, setUser] = useState({});
 
@@ -23,7 +25,7 @@ export default function Home() {
 
   useEffect(()=>{
     const fetchUsers = async ()=>{
-      const response = await axios.get(`http://192.168.1.7:8000/api/user?username=${user.username}`)
+      const response = await axios.get(`${path}/api/user?username=${user.username}`)
       // setUser(response.data)
       console.log(response)
       

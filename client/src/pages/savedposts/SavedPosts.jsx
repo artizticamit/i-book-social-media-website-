@@ -10,6 +10,7 @@ import Post from '../../components/post/Post'
 import axios from 'axios'
 
 export default function SavedPosts() {
+    const path = 'https://i-book-backend.onrender.com'
     const {user:currentUser} = useContext(AuthContext)
     const userId = useParams().userId
     // console.log('type'&&'a')
@@ -27,7 +28,7 @@ export default function SavedPosts() {
         const fetchSavedposts = async()=>{
             if(currentUser)
             {
-                const res = await axios.get('http://localhost:8000/api/posts/savedposts/'+currentUser._id)
+                const res = await axios.get(`${path}/api/posts/savedposts/${currentUser._id}`)
                 setPosts(res.data);
                 console.log(res.data);
             }

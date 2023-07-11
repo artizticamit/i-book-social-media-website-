@@ -9,6 +9,7 @@ import GroupCard from '../../components/groupCard/GroupCard'
 
 
 function Group() {
+  const path = 'https://i-book-backend.onrender.com'
 
   const { user: currentUser, dispatch } = useContext(AuthContext);
   const [groupList, setGroupList] = useState([]);
@@ -23,7 +24,7 @@ function Group() {
   useEffect(() => {
     const fetchGroups = async () => {
       if (currentUser) {
-        const res = await axios.get('http://localhost:8000/api/group/groups/' + currentUser._id)
+        const res = await axios.get(`${path}/api/group/groups/` + currentUser._id)
         setGroupList(res.data);
         console.log(res.data)
       }
@@ -39,7 +40,7 @@ function Group() {
     try{
       if(currentUser)
       {
-        await axios.post('http://localhost:8000/api/group', {name:groupName, desc:groupDesc, admin:currentUser._id})
+        await axios.post(`${path}/api/group`, {name:groupName, desc:groupDesc, admin:currentUser._id})
         setRender(!render);
       }
     }catch(err)
@@ -51,7 +52,7 @@ function Group() {
 
   const handleSearch = async()=>{
     try{
-      const res = await axios.get('http://localhost:8000/api/group/'+searchInput)
+      const res = await axios.get(`${path}/api/group/`+searchInput)
       setSearchData(res.data)
       console.log(res.data)
     }catch(err)

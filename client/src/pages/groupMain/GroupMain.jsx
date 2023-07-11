@@ -9,6 +9,7 @@ import GroupMembers from '../../components/groupMembers/GroupMembers';
 import Topbar from '../../components/topbar/Topbar';
 
 function GroupMain() {
+    const path = 'https://i-book-backend.onrender.com'
 
     const groupId = useParams().groupId;
     const [groupData, setGroupData] = useState(null)
@@ -24,7 +25,7 @@ function GroupMain() {
             const fetchGroupData = async()=>{
                 if(groupId)
                 {
-                    const res = await axios.get('http://localhost:8000/api/group/'+groupId);
+                    const res = await axios.get(`${path}/api/group/`+groupId);
                     setGroupData(res.data);
                     console.log(res.data);
                 }
@@ -58,7 +59,7 @@ function GroupMain() {
             const fetchAdminData = async()=>{
                 if(groupData){
                     const adminId = groupData.admin
-                    const res = await axios.get('http://localhost:8000/api/user/?userId='+adminId)
+                    const res = await axios.get(`${path}/api/user/?userId=`+adminId)
                     setAdminData(res.data);
     
                 }
@@ -75,7 +76,7 @@ function GroupMain() {
             const fetchMembersList = async()=>{
                 if(groupData && adminData)
                 {
-                    const res = await axios.get('http://localhost:8000/api/group/'+groupData._id+'/members')
+                    const res = await axios.get(`${path}/api/group/`+groupData._id+`/members`)
                     // setMembersList(res.data);
                     setMembersList(res.data.filter(user=> user._id!==adminData._id))
                     console.log(membersList)
@@ -95,7 +96,7 @@ function GroupMain() {
             try{
                 if(groupData && currentUser)
                 {
-                    const res = await axios.put('http://localhost:8000/api/group/'+groupData._id+'/join', {userId:currentUser._id})
+                    const res = await axios.put(`${path}/api/group/`+groupData._id+`/join`, {userId:currentUser._id})
                     console.log(groupData._id)
                     dispatch({type:'JOIN_GROUP', payload:groupData._id})
                     // console.log(currentUser)

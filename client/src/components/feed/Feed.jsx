@@ -11,7 +11,7 @@ import { useContext } from "react"
 import { AuthContext } from "../../context/AuthContext"
 
 export default function Feed(props) {
-
+  const path = 'https://i-book-backend.onrender.com'
   const [posts, setPosts] = useState([]); 
   
   const {user} = useContext(AuthContext);
@@ -27,8 +27,8 @@ export default function Feed(props) {
     // console.log("feed = ",props.userid)
     const fetchPosts = async () => {
       const res = props.username
-      ? await axios.get("http://192.168.1.7:8000/api/posts/profile/"+props.username)
-      : await axios.get(`http://192.168.1.7:8000/api/posts/timeline/${user._id}`)
+      ? await axios.get(`${path}/api/posts/profile/`+props.username)
+      : await axios.get(`${path}/api/posts/timeline/${user._id}`)
       
       // console.log(res);
       setPosts(res.data.sort((p1, p2)=>{

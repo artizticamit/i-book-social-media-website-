@@ -13,6 +13,7 @@ import { Cancel } from "@mui/icons-material";
 export default function Share() {
 
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+    const path = 'https://i-book-backend.onrender.com'
 
     const {user:currentUser} = useContext(AuthContext);
 
@@ -40,13 +41,13 @@ export default function Share() {
             newPost.img = fileName;
             console.log(newPost)
             try{
-                await axios.post("http://192.168.1.7:8000/api/upload", data)
+                await axios.post(`${path}/api/upload`, data)
 
             }catch(err){}
         }
 
         try{
-            await axios.post("http://192.168.1.7:8000/api/posts", newPost)
+            await axios.post(`${path}/api/posts`, newPost)
             window.location.reload();
         }
         catch(err){

@@ -5,9 +5,10 @@ import { useState } from 'react';
 
 export const loginCall = async (userCredentials, dispatch)=>{
     // const [error, setError] = useState(null)
+    const path = "https://i-book-backend.onrender.com"
     dispatch({type:"LOGIN_START"});
     try{
-        const res = await axios.post("http://192.168.1.7:8000/api/auth/login",userCredentials);
+        const res = await axios.post(`${path}/api/auth/login`,userCredentials);
         const {password, ...user} = res.data
         console.log(user)
         localStorage.setItem('user',JSON.stringify(res.data))
