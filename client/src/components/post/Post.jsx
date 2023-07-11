@@ -5,11 +5,12 @@ import { useState, useEffect, useRef } from "react";
 import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from "axios";
-import {format} from "timeago.js"
+// import {format} from "timeago.js"
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 import Comments from '../comments/Comments'
+import moment from "moment"
 
 
 
@@ -251,7 +252,7 @@ export default function ({post, handleDeletePost}) {
               <img src={user.profilePicture?PF+user.profilePicture:PF+"person/noAvatar.png"} alt="" className="post-profile-pic" loading="lazy" />
               <span className="post-username">{user.username}</span>
             </a>
-              <span className="post-timelapse" >{format(post.createdAt)}</span>
+              <span className="post-timelapse" >{moment(post.createdAt).fromNow()}</span>
 
             </div>
             <div className="post-top-right" onClick={handlePostClick}>
