@@ -54,7 +54,6 @@ export default function SignIn() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
     signup(email, password, username);
   };
 
