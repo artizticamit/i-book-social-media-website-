@@ -9,6 +9,8 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const multer = require("multer");
 const path = require("path");
+const passport = require('passport')
+const session = require('express-session')
 
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
@@ -79,16 +81,7 @@ app.use((req, res, next)=>{
   })
   
   app.use("/images", express.static(path.join(__dirname, "/public/images")))
-  // console.log("dirname = ",path.join(__dirname, "/public/images"))
 
-
-// app.post("/login", (req, res)=>{
-//     console.log(req.body);
-// })
-
-// app.get("/error", (req, res)=>{
-//     res.end("<h1>Error</h1>")
-// })
 
 app.post("/login", (req, res) => {
   const username = req.body.email;

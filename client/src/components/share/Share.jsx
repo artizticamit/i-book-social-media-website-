@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import {useRef} from "react";
 import { Cancel } from "@mui/icons-material";
+import IosShareIcon from '@mui/icons-material/IosShare';
 
 
 export default function Share() {
@@ -20,6 +21,7 @@ export default function Share() {
     const desc = useRef();
 
     const [file, setFile] = useState(null);
+    const [shareButtonText, setShareButtonText] = useState("Share");
 
     const submitHandle = async (e)=>{
         e.preventDefault();
@@ -55,6 +57,23 @@ export default function Share() {
         }
         desc.current.value=""
     }
+
+    useEffect(() => {
+        const handleResize = () => {
+          if (window.innerWidth <= 650) {
+            setShareButtonText("");
+          } else {
+            setShareButtonText("Share");
+          }
+        };
+    
+        handleResize(); // Initial call to set initial state
+        window.addEventListener("resize", handleResize);
+    
+        return () => {
+          window.removeEventListener("resize", handleResize);
+        };
+      }, []);
 
   return (
     <div className="share-container">
@@ -100,7 +119,10 @@ export default function Share() {
                         </span>
                     </div>
                 </div>
-                <button className="share-btn" type="submit">Share</button>
+                {
+                    shareButtonText === "" ? <IosShareIcon />:<button className="share-btn" type="submit">{shareButtonText}</button>
+                }
+                
             </form>
         </div>
     </div>

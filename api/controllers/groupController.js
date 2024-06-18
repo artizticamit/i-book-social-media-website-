@@ -55,7 +55,8 @@ const getGroupList = async(req, res)=>{
     }
 }
 
-// delete a group
+// delete a group 
+// Group can be deleted by only admin
 const deleteGroup = async(req, res)=>{
     const groupId = mongoose.Types.ObjectId(req.params.groupId)
     // console.log(typeof(groupId))
@@ -132,6 +133,31 @@ const joinGroup = async (req, res)=>{
     }
 }
 
+//leave a group
+const leaveGroup = async(req, res)=>{
+    const userId = req.body.userId;
+    const groupId = req.body.groupId;
+    try{
+        const group = await Group.findOne({_id:groupId})
+        const user = await User.findById(userId)
+        if(!user)
+        {
+            throw Error('User not found');
+        }
+        if(!group)
+        {
+            throw Error('Group not found');
+        }
+        await user.updateOne({$pull:{groups:groupId}})
+        await group.updateOne({$pull:{members:userId}})
+        res.status(200).json("Left successfully")
+    }catch(error)
+    {
+        console.log(error)
+        res.status(404).json(error.message)
+    }
+}
+
 module.exports = {
     createGroup,
     getGroup,
@@ -139,4 +165,5 @@ module.exports = {
     joinGroup,
     deleteGroup,
     getMembersList,
+    leaveGroup
 };

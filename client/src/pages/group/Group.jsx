@@ -10,6 +10,7 @@ import GroupCard from '../../components/groupCard/GroupCard'
 
 function Group() {
   const path = 'https://i-book-backend.onrender.com'
+  const PATH = process.env.PATH || 'http://localhost:8000'
 
   const { user: currentUser, dispatch } = useContext(AuthContext);
   const [groupList, setGroupList] = useState([]);

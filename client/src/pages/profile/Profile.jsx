@@ -13,6 +13,7 @@ import { AuthContext } from "../../context/AuthContext";
 export default function Profile() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const path = 'https://i-book-backend.onrender.com'
+  const PATH = process.env.PATH || 'http://localhost:8000'
 
   const [user, setUser] = useState({});
   const username = useParams().username;
@@ -29,6 +30,11 @@ export default function Profile() {
     fetchUser();
   },[username])
 
+
+  const handleUpload = ()=>{
+    console.log("upload image prompt")
+  }
+
   // console.log("profile = ",username, user)
 
   // console.log("profile = ",user.profilePicture?PF+user.profilePicture:PF+"ad.png")
@@ -42,7 +48,10 @@ export default function Profile() {
           <div className="profile-right-top">
             <div className="profile-cover">
               <img src={PF+user.coverPicture} alt="" className="profile-cover-img" />
+              <div className="profile-img-container">
+              <span className="profile-img-upload-text" onClick={handleUpload} >Upload</span>
               <img src={user.profilePicture ? PF+user.profilePicture:PF+"person/noAvatar.png"} alt="" className="profile-user-img" />
+              </div>
             </div>
           </div>
           <div className="profile-info">

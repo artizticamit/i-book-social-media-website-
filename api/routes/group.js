@@ -18,4 +18,7 @@ router.get("/:groupId/members", groupMethod.getMembersList)
 // join a group
 router.put("/:groupId/join", groupMethod.joinGroup)
 
+// leave a group
+router.put("/:groupId/leave", groupMethod.leaveGroup)
+
 module.exports = router

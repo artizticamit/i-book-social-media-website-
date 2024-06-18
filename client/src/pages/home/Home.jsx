@@ -16,6 +16,7 @@ import { AuthContext } from "../../context/AuthContext"
 export default function Home() {
 
   const path = 'https://i-book-backend.onrender.com';
+  const PATH = process.env.PATH || 'http://localhost:8000'
 
   const {state } = useLocation();
   // const [user, setUser] = useState({});

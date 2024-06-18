@@ -10,6 +10,7 @@ import Topbar from '../../components/topbar/Topbar';
 
 function GroupMain() {
     const path = 'https://i-book-backend.onrender.com'
+    const PATH = process.env.PATH || 'http://localhost:8000'
 
     const groupId = useParams().groupId;
     const [groupData, setGroupData] = useState(null)
@@ -111,7 +112,17 @@ function GroupMain() {
             }
         }
         else{
-            setGroupLeaveStatus("Join")
+            try{
+                if(groupData && currentUser)
+                {
+                    const res = await axios.put(`${path}/api/group/`+groupData._id+`/leave`, {userId:currentUser._id})
+                    setGroupLeaveStatus("Join")
+                }
+                
+            }catch(err)
+            {
+                console.log(err)
+            }
         }
     }
 
