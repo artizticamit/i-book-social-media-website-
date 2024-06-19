@@ -10,7 +10,7 @@ import GroupCard from '../../components/groupCard/GroupCard'
 
 function Group() {
   const path = 'https://i-book-backend.onrender.com'
-  const PATH = process.env.PATH || 'http://localhost:8000'
+  const PATH = process.env.REACT_APP_PATH_TO_BACKEND || 'http://localhost:8000'
 
   const { user: currentUser, dispatch } = useContext(AuthContext);
   const [groupList, setGroupList] = useState([]);
@@ -25,7 +25,7 @@ function Group() {
   useEffect(() => {
     const fetchGroups = async () => {
       if (currentUser) {
-        const res = await axios.get(`${path}/api/group/groups/` + currentUser._id)
+        const res = await axios.get(`${PATH}/api/group/groups/` + currentUser._id)
         setGroupList(res.data);
         console.log(res.data)
       }
@@ -41,7 +41,7 @@ function Group() {
     try{
       if(currentUser)
       {
-        await axios.post(`${path}/api/group`, {name:groupName, desc:groupDesc, admin:currentUser._id})
+        await axios.post(`${PATH}/api/group`, {name:groupName, desc:groupDesc, admin:currentUser._id})
         setRender(!render);
       }
     }catch(err)
@@ -53,7 +53,7 @@ function Group() {
 
   const handleSearch = async()=>{
     try{
-      const res = await axios.get(`${path}/api/group/`+searchInput)
+      const res = await axios.get(`${PATH}/api/group/`+searchInput)
       setSearchData(res.data)
       console.log(res.data)
     }catch(err)

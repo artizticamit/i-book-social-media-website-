@@ -14,10 +14,11 @@ export default function Comments({comment}) {
 
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const path = 'https://i-book-backend.onrender.com'
+  const PATH = process.env.REACT_APP_PATH_TO_BACKEND
 
   useEffect(()=>{
     const fetchCommenter = async()=>{
-      const res = await axios.get(`${path}/api/user?username=`+comment.username)
+      const res = await axios.get(`${PATH}/api/user?username=`+comment.username)
       setCommenter(res.data);
       console.log(res);
     }

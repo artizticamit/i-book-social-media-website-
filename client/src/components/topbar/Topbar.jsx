@@ -132,7 +132,9 @@ export default function Topbar() {
 
                 </div>
                 <div className="messages menu-items">
-                    <Message />
+                    <Link to='/messages'>
+                        <Message />
+                    </Link>
                     <span className="flag"></span>
                 </div>
                 <div className="notifications menu-items">

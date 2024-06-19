@@ -12,6 +12,7 @@ import axios from 'axios'
 
 export default function Sidebar() {
   const path = 'https://i-book-backend.onrender.com'
+  const PATH = process.env.REACT_APP_PATH_TO_BACKEND;
 
   const style={
     textDecoration: "none",
@@ -29,7 +30,7 @@ export default function Sidebar() {
       if(currentUser)
       {
 
-        const res = await axios.get(`${path}/api/user/friends/` + currentUser._id);
+        const res = await axios.get(`${PATH}/api/user/friends/` + currentUser._id);
         console.log(res)
         setFriends(res.data)
       }

@@ -12,6 +12,7 @@ import { AuthContext } from "../../context/AuthContext"
 
 export default function Feed(props) {
   const path = 'https://i-book-backend.onrender.com'
+  const PATH = process.env.REACT_APP_PATH_TO_BACKEND;
   const [posts, setPosts] = useState([]); 
   
   const {user} = useContext(AuthContext);
@@ -27,8 +28,8 @@ export default function Feed(props) {
     // console.log("feed = ",props.userid)
     const fetchPosts = async () => {
       const res = props.username
-      ? await axios.get(`${path}/api/posts/profile/`+props.username)
-      : await axios.get(`${path}/api/posts/timeline/${user._id}`)
+      ? await axios.get(`${PATH}/api/posts/profile/`+props.username)
+      : await axios.get(`${PATH}/api/posts/timeline/${user._id}`)
       
       // console.log(res);
       setPosts(res.data.sort((p1, p2)=>{

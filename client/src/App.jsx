@@ -12,8 +12,7 @@ import { AuthContext } from "./context/AuthContext";
 import SavedPosts from "./pages/savedposts/SavedPosts";
 import Group from "./pages/group/Group";
 import GroupMain from "./pages/groupMain/GroupMain";
-
-
+import Messages from "./pages/messages/Messages"; 
 
 
 function App() {
@@ -43,6 +42,7 @@ function App() {
           <Route exact path='/group' element={<Group/>}/>
           <Route exact path='/group/:groupId' element={<GroupMain />}/>
           <Route exact path='/temp/:username' element={<Temp user={user} />}/>
+          <Route exact path='/messages' element={<Messages />}/>
         </Routes>
       </Router>
     </>

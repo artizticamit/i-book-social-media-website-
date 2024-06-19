@@ -1,0 +1,37 @@
+.main-container{
+    /* width: 100vw; */
+    /* height: 100vh; */
+    /* border: 1px solid black; */
+    overflow: hidden;
+}
+
+.messages-container{
+    display: flex;
+    height: 80vh;
+    /* border: 1px solid red; */
+    margin: 5px 30px;
+}
+
+.message-box{
+    flex:2;
+    border: 1px solid #ff0000;
+    /* overflow-y: scroll; */
+    display: flex;
+    
+    
+}
+
+.center-align{
+    align-items: center;
+    justify-content: center;
+}
+
+.message-box-text{
+    font-size: larger;
+}
+
+.friends-list{
+    flex:1;
+    border: 1px solid red;
+    overflow-y: scroll;
+}

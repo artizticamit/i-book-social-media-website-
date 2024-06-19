@@ -5,6 +5,7 @@ import { AuthContext } from '../context/AuthContext'
 
 export const useLogin = ()=>{
     const path = 'https://i-book-backend.onrender.com'
+    const PATH = process.env.REACT_APP_PATH_TO_BACKEND;
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(null);
 
@@ -16,7 +17,7 @@ export const useLogin = ()=>{
         setIsLoading(true);
 
         try{
-            const res = await axios.post(`${path}api/auth/login`, {email:email, password:password})
+            const res = await axios.post(`${PATH}api/auth/login`, {email:email, password:password})
             const {password, ...user} = res.data
             console.log(user)
             setIsLoading(false);

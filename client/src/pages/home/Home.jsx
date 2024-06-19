@@ -16,7 +16,7 @@ import { AuthContext } from "../../context/AuthContext"
 export default function Home() {
 
   const path = 'https://i-book-backend.onrender.com';
-  const PATH = process.env.PATH || 'http://localhost:8000'
+  const PATH = process.env.REACT_APP_PATH_TO_BACKEND || 'http://localhost:8000'
 
   const {state } = useLocation();
   // const [user, setUser] = useState({});
@@ -26,7 +26,7 @@ export default function Home() {
 
   useEffect(()=>{
     const fetchUsers = async ()=>{
-      const response = await axios.get(`${path}/api/user?username=${user.username}`)
+      const response = await axios.get(`${PATH}/api/user?username=${user.username}`)
       // setUser(response.data)
       console.log(response)
       

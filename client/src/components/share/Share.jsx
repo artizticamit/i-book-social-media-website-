@@ -14,7 +14,8 @@ import IosShareIcon from '@mui/icons-material/IosShare';
 export default function Share() {
 
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-    const path = 'https://i-book-backend.onrender.com'
+    // const path = 'https://i-book-backend.onrender.com'
+    const PATH = process.env.REACT_APP_PATH_TO_BACKEND;
 
     const {user:currentUser} = useContext(AuthContext);
 
@@ -42,14 +43,15 @@ export default function Share() {
             data.append("file", file);
             newPost.img = fileName;
             console.log(newPost)
+            console.log("data = ", data);
             try{
-                await axios.post(`${path}/api/upload`, data)
+                await axios.post(`${PATH}/api/upload`, data)
 
             }catch(err){}
         }
 
         try{
-            await axios.post(`${path}/api/posts`, newPost)
+            await axios.post(`${PATH}/api/posts`, newPost)
             window.location.reload();
         }
         catch(err){

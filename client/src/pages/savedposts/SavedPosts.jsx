@@ -11,7 +11,7 @@ import axios from 'axios'
 
 export default function SavedPosts() {
     // const path = 'https://i-book-backend.onrender.com'
-    const PATH = process.env.PATH || 'http://localhost:8000'
+    const PATH = process.env.REACT_APP_PATH_TO_BACKEND || 'http://localhost:8000'
     const {user:currentUser} = useContext(AuthContext)
     const userId = useParams().userId
     // console.log(currentUser)

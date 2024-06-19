@@ -14,6 +14,7 @@ export default function Rightbar({ user, username }) {
 
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const path = 'https://i-book-backend.onrender.com'
+  const PATH = process.env.REACT_APP_PATH_TO_BACKEND;
   const { user: currentUser, dispatch } = useContext(AuthContext);
   const [userData, setUserData] = useState({});
 
@@ -27,7 +28,7 @@ export default function Rightbar({ user, username }) {
     const getUser = async () => {
       if(username)
       {
-        const res = await axios.get(`${path}/api/user?username=` + username);
+        const res = await axios.get(`${PATH}/api/user?username=` + username);
         // console.log("getuser ka data= ", res.data)
         setUserData(res.data);
       }
@@ -40,7 +41,7 @@ export default function Rightbar({ user, username }) {
       try {
         if(userData._id)
         {
-          const res = await axios.get(`${path}/api/user/friends/` + userData._id)
+          const res = await axios.get(`${PATH}/api/user/friends/` + userData._id)
           setFriends(res.data)
           // console.log("username jiska hai uske friends ka data = ", res.data)
         }
@@ -66,11 +67,11 @@ export default function Rightbar({ user, username }) {
 
     try {
       if (followed) {
-        await axios.put(`${path}/api/user/` + userData._id + "/unfollow", { userId: currentUser._id })
+        await axios.put(`${PATH}/api/user/` + userData._id + "/unfollow", { userId: currentUser._id })
         // setFollowtext("Follow")
         dispatch({ type: "UNFOLLOW", payload: userData._id })
       } else {
-        await axios.put(`${path}/api/user/` + userData._id + "/follow", { userId: currentUser._id })
+        await axios.put(`${PATH}/api/user/` + userData._id + "/follow", { userId: currentUser._id })
         // setFollowtext("Unfollow")
         dispatch({ type: "FOLLOW", payload: userData._id })
       }

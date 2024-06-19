@@ -15,8 +15,8 @@ const bcrypt = require("bcrypt");
 //update user
 router.put("/:id", async (req, res)=>{
     console.log("params = ",req.params)
-    console.log("params = ",req.body)
-    if(req.body.userId === req.params.id  || req.body.isAdmin){
+    console.log("body = ",req.body)
+    if(req.body.userId?req.body.userId : req.body._id === req.params.id  || req.body.isAdmin){
         if(req.body.password)
         {
             try{
@@ -126,25 +126,29 @@ router.put("/:id/unfollow", async (req, res)=>{
 })
 
 // get friends
-router.get("/friends/:userId", async (req, res)=>{
-    try{
+router.get("/friends/:userId", async (req, res) => {
+    try {
         const user = await User.findById(req.params.userId);
         const friends = await Promise.all(
-            user.followings.map((friendId)=>{
+            user.followings.map((friendId) => {
                 return User.findById(friendId);
             })
-        )
+        );
+
+        // Filter out any null values
+        const validFriends = friends.filter(friend => friend !== null);
+
         let friendList = [];
-        friends.map(friend=>{
-            const {_id, username, profilePicture} = friend;
-            friendList.push({_id, username, profilePicture})
-        })
+        validFriends.map(friend => {
+            const { _id, username, profilePicture } = friend;
+            friendList.push({ _id, username, profilePicture });
+        });
+
         res.status(200).json(friendList);
-    }catch(err)
-    {
-        res.status(500).json(err)
+    } catch (err) {
+        res.status(500).json(err.message);
     }
-})
+});
 
 
 module.exports = router

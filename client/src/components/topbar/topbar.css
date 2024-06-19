@@ -99,6 +99,12 @@
   margin-right: 20px;
   cursor: pointer;
 }
+
+
+.profile-icon{
+  cursor: pointer;
+}
+
 .image-container {
   /* margin-right: 20; */
   display: flex;
