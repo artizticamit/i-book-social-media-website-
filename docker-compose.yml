@@ -21,10 +21,6 @@ services:
     stdin_open: true
     environment:
       WATCHPACK_POLLING: "true"
-      REACT_APP_PUBLIC_FOLDER: "${REACT_APP_PUBLIC_FOLDER}"
-      GENERATE_SOURCEMAP : true
-      PATH: "${PATH}"
-      REACT_APP_PATH_TO_BACKEND: "${REACT_APP_PATH_TO_BACKEND}"
     volumes:
       - ./client:/app/client
       - /app/client/node_modules
