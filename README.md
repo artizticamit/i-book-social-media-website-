@@ -18,10 +18,11 @@
 - <code>cd client</code>
 - <code> npm install </code>
 - Create ```.env``` file in the client folder and add these lines
-  <code>REACT_APP_PUBLIC_FOLDER=http://localhost:8000/images/
-GENERATE_SOURCEMAP=false
-PATH=http://localhost:8000
-REACT_APP_PATH_TO_BACKEND=http://localhost:8000<code/>
+- <code>REACT_APP_PUBLIC_FOLDER=http://localhost:8000/images/
+    GENERATE_SOURCEMAP=false
+    PATH=http://localhost:8000
+    REACT_APP_PATH_TO_BACKEND=http://localhost:8000
+  </code>
 - Then <code>npm run start</code> to start working on the frontend.
 
 # This project also support docker development
