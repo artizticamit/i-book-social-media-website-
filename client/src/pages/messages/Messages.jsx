@@ -61,6 +61,7 @@ function Messages() {
           )
         }
         </div>
+        {/* TODO: Need to create a input message box and send button  */}
         <div className="friends-list">
         {
           friendsList.length>0 ? friendsList.map((friendData)=>(

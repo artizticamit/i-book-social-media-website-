@@ -11,8 +11,18 @@ function MessageBox({friendData, setClicked}) {
                 <Close onClick={()=>{setClicked(null)}}/>
             </div>
         </div>
-        <div className="chatting-box"></div>
-        <div className="message-input"></div>
+        <div className="chatting-box">
+          <div className="chatting-box-left">
+      
+          </div>
+          <div className="chatting-box-right">
+
+          </div>
+        </div>
+        <div className="message-input">
+          <input className='message-input-text-box' type="text" />
+          <button className='message-input-send-btn'>Send</button>
+        </div>
     </div>
   )
 }

@@ -29,14 +29,50 @@
 
 }
 .chatting-box{
-    border: 1px solid black;
     height: 100%;
-    /* width: 100px; */
     overflow-y: scroll;
+    display: flex;
+    /* justify-content: space-between; */
+    /* align-items: flex-start; */
+    flex-direction: column;
 }
 
 .message-input{
-    border: 1px solid black;
-    height: 100px;
+    /* border: 1px solid black; */
+    height: 70px;
     /* width: 100px; */
+    display: flex;
+    /* padding: 10px 10px; */
+}
+.message-input-text-box{
+    height: 89%;
+    width: 100%;
+    outline: none;
+    border-radius: 20px;
+    font-size: 20px;
+    margin-right: 10px;
+    /* display: block; */
+}
+
+.message-input-send-btn{
+    font-size: 20px;
+    width:100px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.chatting-box-left{
+    width: 400px;
+    height: 100px;
+    border: 1px solid black;
+    flex: 1;
+    align-self: start;
+}
+
+.chatting-box-right{
+    width: 400px;
+    height: 100px;
+    border: 1px solid black;
+    flex: 1;
+    align-self: end;
 }
