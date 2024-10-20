@@ -24,6 +24,10 @@
     REACT_APP_PATH_TO_BACKEND=http://localhost:8000
   </code>
 - Then <code>npm run start</code> to start working on the frontend.
+- <code>cd ../api</code>
+- <code> npm install </code>
+- Then <code>npm run start</code> to start backend.
+
 
 # This project also support docker development
 
