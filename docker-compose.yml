@@ -9,6 +9,9 @@ services:
     volumes:
       - ./api:/api
       - /api/node_modules
+    environment:
+      - MONGO_URL=${MONGO_URL}
+      - SECRET_KEY=${SECRET_KEY}
   react-client:
     build:
       context: ./client
@@ -18,6 +21,10 @@ services:
     stdin_open: true
     environment:
       WATCHPACK_POLLING: "true"
+      REACT_APP_PUBLIC_FOLDER: "${REACT_APP_PUBLIC_FOLDER}"
+      GENERATE_SOURCEMAP : true
+      PATH: "${PATH}"
+      REACT_APP_PATH_TO_BACKEND: "${REACT_APP_PATH_TO_BACKEND}"
     volumes:
       - ./client:/app/client
       - /app/client/node_modules
