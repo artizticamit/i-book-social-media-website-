@@ -10,7 +10,7 @@ import { useContext } from "react"
 import axios from 'axios'
 
 
-export default function Sidebar() {
+export default function Sidebar(props) {
   const path = 'https://i-book-backend.onrender.com'
   const PATH = process.env.REACT_APP_PATH_TO_BACKEND;
 
@@ -45,7 +45,7 @@ export default function Sidebar() {
 
 
   return (
-    <div className="sidebar-container">
+    <div className="sidebar-container" style={{transform: props.open?"translateX(0%)":"translateX(-100%)"}}>
       <div className="sidebarWrapper">
         <ul className="sidebar-list">
           <li className="sidebar-list-item">

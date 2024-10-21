@@ -9,6 +9,8 @@
     position: sticky;
     top: 49px;
     z-index: 1;
+    transition: all;
+    transition-duration: 500ms;
 }
 
 .sidebar-container::-webkit-scrollbar
@@ -91,10 +93,3 @@
     list-style: none;
    
 }
-
-@media only screen and (max-width:420px){
-    .sidebar-container{
-        display: none;
-    }
-}
-
