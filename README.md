@@ -38,7 +38,6 @@ Create a `.env` file in the `client` directory and add the following lines:
 ```env
 REACT_APP_PUBLIC_FOLDER=http://localhost:8000/images/
 GENERATE_SOURCEMAP=false
-PATH=http://localhost:8000
 REACT_APP_PATH_TO_BACKEND=http://localhost:8000
 ```
 
