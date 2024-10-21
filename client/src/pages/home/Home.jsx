@@ -15,6 +15,8 @@ import { AuthContext } from "../../context/AuthContext"
 
 export default function Home() {
 
+  const [openMenu, setOpenMenu] = useState(true);
+
   const path = 'https://i-book-backend.onrender.com';
   const PATH = process.env.REACT_APP_PATH_TO_BACKEND || 'http://localhost:8000'
 
@@ -37,9 +39,9 @@ export default function Home() {
 
   return (
       <>
-          <Topbar />
+          <Topbar menu={openMenu} setmenu={setOpenMenu} />
           <div className="home-container">
-            <Sidebar />
+            <Sidebar open={openMenu} />
             <Feed />
             <Rightbar user={user} />
           </div>

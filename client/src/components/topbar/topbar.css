@@ -59,6 +59,12 @@
   left: 38px;
 }
 
+.menu-btn {
+  display: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
 .menu-container {
   display: flex;
   align-items: center;
@@ -213,5 +219,9 @@
   }
   .container{
     justify-content: space-between;
+  }
+
+  .menu-btn{
+    display: block;
   }
 }

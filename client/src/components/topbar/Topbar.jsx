@@ -24,7 +24,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
-export default function Topbar() {
+export default function Topbar(props) {
     // const toggle = document.querySelector(".toggle-icon");
     // toggle.addEventListener("click", (e)=>{
     //     e.target.style.backgroundColor = "white";
@@ -108,9 +108,9 @@ export default function Topbar() {
     <>
         <div className="container" ref={topbarref}>
 
-            <div>
+            <button className="menu-btn" onClick={() => { props.setmenu(!props.menu)}}>
                 <DehazeIcon />
-            </div>
+            </button>
 
             <Link to="/" style={{textDecoration:"none"}} className="icon-container-link-wrapper">
                 <div className="icon-container">
