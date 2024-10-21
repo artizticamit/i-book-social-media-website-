@@ -54,3 +54,6 @@
 - <code> docker build -t 'docker-image-name' . </code>
 
 - <code> docker run -p 3000:3000 'image ID' </code>
+
+## PR Creating guidelines
+- Create PR for develop branch only, otherwise it will be rejected
