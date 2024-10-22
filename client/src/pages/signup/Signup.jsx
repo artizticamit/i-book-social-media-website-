@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -10,20 +10,17 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import axios from 'axios';
-import {useNavigate} from 'react-router-dom';
-import Stack from '@mui/material/Stack';
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
-import {useSignup} from '../../hooks/useSignup'
-import { CircularProgress } from '@mui/material';
-import { useState } from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
+import { useNavigate } from 'react-router-dom';
+import { useSignup } from '../../hooks/useSignup';
+import './Signup.css';
 
-function Copyright(props) {
+const theme = createTheme();
+
+function Copyright() {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+    <Typography variant="body2" color="text.secondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://github.com/artizticamit/">
         Github
@@ -34,126 +31,109 @@ function Copyright(props) {
   );
 }
 
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
-
-const theme = createTheme();
-
-export default function SignIn() {
-
+export default function SignUp() {
   const navigate = useNavigate();
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
-
-  const {signup, error, isLoading} = useSignup();
-
-  // const [err, setErr] = React.useState(false);
+  const { signup, error, isLoading } = useSignup();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     signup(email, password, username);
   };
 
-
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <div className="signup-container">
         <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign Up
-          </Typography>
-          <Box component="form" noValidate sx={{ mt: 1 }}>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              value={email}
-              onChange={(e)=>{setEmail(e.target.value)}}
+        <div className="signup-wrapper">
+          <div className="signup-left">
+          <h2 className="signup-heading">
+              Welcome to <span style={{color: 'blueviolet'}}>i-Book</span>
+            </h2>
+            <img
+              src="/assets/login-hero.png"
+              alt="SignUp Hero"
+              className="signup-hero-image"
+            />
+          </div>
 
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="username"
-              label="Username"
-              name="username"
-              autoComplete="username"
-              value={username}
-              onChange={(e)=>{setUsername(e.target.value)}}
-              // autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              value={password}
-              onChange={(e)=>{setPassword(e.target.value)}}
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              onClick={handleSubmit}
-              disabled={isLoading}
-            >
-              {isLoading ? <CircularProgress color="inherit" size="24px" /> : "Sign In"}
-            </Button>
-            
-            {error&&<div className='error' style={{
-              border:'1px solid red',
-              borderRadius:'5px',
-              padding:'1px 5px 1px 5px',
-              color:'red',
-              backgroundColor:'#ffe0e0',
-              margin:'5px 0px 10px 0px'
-            }}>{error}</div>}
-            
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="/login" variant="body2">
-                  {"Already have an account? Login"}
-                </Link>
-              </Grid>
-            </Grid>
-          </Box>
-        </Box>
-        <Copyright sx={{ mt: 8, mb: 4 }} />
-      </Container>
+          <div className="signup-right">
+            <Box className="signup-box">
+              <Avatar className="signup-avatar">
+                <LockOutlinedIcon />
+              </Avatar>
+              <Typography component="h1" variant="h5">
+                Sign Up
+              </Typography>
+              <form noValidate className="signup-form" onSubmit={handleSubmit}>
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  autoFocus
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="username"
+                  label="Username"
+                  name="username"
+                  autoComplete="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <FormControlLabel
+                  control={<Checkbox value="remember" color="primary" />}
+                  label="Remember me"
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  className="signup-button"
+                  disabled={isLoading}
+                >
+                  {isLoading ? (
+                    <CircularProgress color="inherit" size="24px" />
+                  ) : (
+                    'Sign Up'
+                  )}
+                </Button>
+                {error && <div className="error-message">{error}</div>}
+                <Grid container>
+                  <Grid item>
+                    <Link href="/login" variant="body2" >
+                      {'Already have an account? Login'}
+                    </Link>
+                  </Grid>
+                </Grid>
+              </form>
+            </Box>
+            <Copyright />
+          </div>
+        </div>
+      </div>
     </ThemeProvider>
   );
 }

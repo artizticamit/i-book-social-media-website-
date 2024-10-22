@@ -54,9 +54,9 @@ export default function Login() {
         <CssBaseline />
         <div className="login-wrapper">
           <div className="login-left">
-            <Typography component="h1" variant="h4" className="login-heading">
-              Welcome Back!
-            </Typography>
+            <h2 className="login-heading">
+              Welcome to <span style={{color: 'blueviolet'}}>i-Book</span>
+            </h2>
             <img
               src="/assets/login-hero.png"
               alt="Login Hero"
