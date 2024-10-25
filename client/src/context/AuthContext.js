@@ -17,12 +17,13 @@ export const AuthContextProvider = ({children})=>{
     // localStorage.setItem('user', state.user)
 
     useEffect(()=>{
-        const user = JSON.parse(localStorage.getItem('user'));
-        if(user)
-        {
-            dispatch({type:'LOGIN_SUCCESS', payload:user})
+        const storedUser = JSON.parse(localStorage.getItem('user'));
+        if (storedUser) {
+            dispatch({ type: 'UPDATE_USER', payload: storedUser });
         }
     },[])
+
+    
 
     return (
         <AuthContext.Provider value={{

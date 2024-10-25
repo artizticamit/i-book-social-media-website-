@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 export const useSignup = ()=>{
     const path = 'https://i-book-backend.onrender.com'
-    // const path = 'http://localhost:8000'
+    // const PATH = 'http://localhost:8000'
     const PATH = process.env.REACT_APP_PATH_TO_BACKEND;
     const navigate = useNavigate();
     const [error, setError] = useState(null);
