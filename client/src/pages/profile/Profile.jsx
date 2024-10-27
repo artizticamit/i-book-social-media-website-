@@ -20,7 +20,7 @@ export default function Profile() {
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState(null);
   const username = useParams().username;
-  const {user:currentUser} = useContext(AuthContext)
+  const {user:currentUser, dispatch} = useContext(AuthContext)
   // console.log("user dat form authcontext",currentUser);
 
   useEffect(()=>{
@@ -49,7 +49,7 @@ export default function Profile() {
       formData.append("file", file);
 
       console.log("file = ", file);
-      console.log("formData ", formData.file);
+      // console.log("formData ", formData.get('file'));
       // for (let [key, value] of formData.entries()) {
       //   console.log(`${key}: ${value}`);
       // }
@@ -69,7 +69,10 @@ export default function Profile() {
         // console.log("updatedUser = ", updatedUser);
 
         await axios.put(`${PATH}/api/user/${currentUser._id}`, updatedUser);
-
+        
+        localStorage.setItem('user', JSON.stringify(updatedUser));
+        // Update AuthContext with the new user data
+        dispatch({ type: 'UPDATE_USER', payload: updatedUser });
       }
       catch(err){
         console.log(`err message = ${err.message}`)
