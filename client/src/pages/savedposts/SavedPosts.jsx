@@ -8,6 +8,7 @@ import './savedposts.css'
 
 import Post from '../../components/post/Post'
 import axios from 'axios'
+import Topbar from '../../components/topbar/Topbar'
 
 export default function SavedPosts() {
     // const path = 'https://i-book-backend.onrender.com'
@@ -18,6 +19,7 @@ export default function SavedPosts() {
     const navigate = useNavigate();
 
     const [posts, setPosts] = useState([])
+    const [openMenu, setOpenMenu] = useState(true);
 
     if(currentUser&&userId!==currentUser._id)
     {
@@ -44,9 +46,10 @@ export default function SavedPosts() {
 
   return (
     <>
-        <div>SavedPosts</div>
+        <Topbar menu={openMenu} setmenu={setOpenMenu}/>
+        
         <div className="savedposts-container">
-            <Sidebar />
+            <Sidebar open={openMenu}/>
             <div>
                 {posts && posts.map((post)=>{
                 return <Post key={post._id} post={post} handleDeletePost={handleDeletePost}/>
